@@ -6,10 +6,11 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Feather, Ionicons, FontAwesome } from "@expo/vector-icons";
-import { ProfileStackScreen } from './profileScreen/ProfileStackScreen';
+import { ProfileStackScreen } from "./profileScreen/ProfileStackScreen";
+import { WishlistStack } from "./WishlistPage/WishlistStack";
 import SearchScreen from "./SearchPage/SearchScreen";
 import SearchStack from './SearchPage/SearchStack';
-import { WishlistScreen } from "./WishlistPage/WishlistScreen";
+
 
 function ExploreStackScreen() {
   return (
@@ -20,7 +21,7 @@ function ExploreStackScreen() {
 }
 
 function WishlistStackScreen() {
-  return <WishlistScreen />;
+  return <WishlistStack />;
 }
 
 function InboxStackScreen() {
