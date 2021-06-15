@@ -8,7 +8,11 @@ const Stack = createStackNavigator();
 export const WishlistStack = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Wishlist" component={WishlistScreen} />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="Wishlist"
+        component={WishlistScreen}
+      />
       <Stack.Screen name="Detail" component={DetailScreen} />
     </Stack.Navigator>
   );
