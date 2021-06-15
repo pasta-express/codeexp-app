@@ -7,6 +7,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Feather, Ionicons, FontAwesome } from "@expo/vector-icons";
 import { ProfileStackScreen } from './profileScreen/ProfileStackScreen';
+import SearchScreen from "./SearchPage/SearchScreen";
+import SearchStack from './SearchPage/SearchStack';
 
 function ExploreStackScreen() {
   return (
@@ -69,7 +71,7 @@ export default function App() {
           inactiveTintColor: "gray",
         }}
       >
-        <Tab.Screen name="Explore" component={ExploreStackScreen} />
+        <Tab.Screen name="Explore" component={SearchStack} />
         <Tab.Screen name="Wishlist" component={WishlistStackScreen} />
         <Tab.Screen name="Inbox" component={InboxStackScreen} />
         <Tab.Screen name="Profile" component={ProfileStackScreen} />
