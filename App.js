@@ -10,6 +10,7 @@ import { ProfileStackScreen } from "./profileScreen/ProfileStackScreen";
 import { WishlistStack } from "./WishlistPage/WishlistStack";
 import SearchScreen from "./SearchPage/SearchScreen";
 import SearchStack from './SearchPage/SearchStack';
+import InboxScreen from "./InboxPage/Inbox"
 
 
 function ExploreStackScreen() {
@@ -25,11 +26,7 @@ function WishlistStackScreen() {
 }
 
 function InboxStackScreen() {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Inbox Screen</Text>
-    </View>
-  );
+  return <InboxScreen />
 }
 
 export default function App() {
