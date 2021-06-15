@@ -27,16 +27,16 @@ export default function InboxStack() {
 }
 
 const styles = StyleSheet.create({
-    button:{
-      backgroundColor: 'white',
-      borderBottomColor: 'black',
-      alignText:'left',
-      height: 60,
-      fontSize: 40,
-      fontWeight: "bold",
-      width: "100%"
-    }
-  });
+  button: {
+    backgroundColor: "white",
+    borderBottomColor: "black",
+    //alignText:'left',
+    height: 60,
+    fontSize: 40,
+    fontWeight: "bold",
+    width: "100%",
+  },
+});
 
   
 
