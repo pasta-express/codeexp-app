@@ -7,16 +7,12 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Feather, Ionicons, FontAwesome } from "@expo/vector-icons";
-<<<<<<< HEAD
 import { ProfileStackScreen } from './profileScreen/ProfileStackScreen';
-=======
 import { ProfileStackScreen } from "./profileScreen/ProfileStackScreen";
 import { WishlistStack } from "./WishlistPage/WishlistStack";
 import SearchScreen from "./SearchPage/SearchScreen";
->>>>>>> 52f7d5a1ae0a4b8f1d6906877e23ce32fb020203
 import SearchStack from './SearchPage/SearchStack';
 import InboxScreen from "./InboxPage/Inbox"
-
 
 function ExploreStackScreen() {
   return (
