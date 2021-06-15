@@ -7,7 +7,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Feather, Ionicons, FontAwesome } from "@expo/vector-icons";
 import { ProfileStackScreen } from "./profileScreen/ProfileStackScreen";
-import { WishlistScreen } from "./WishlistPage/WishlistScreen";
+import { WishlistStack } from "./WishlistPage/WishlistStack";
 
 function ExploreStackScreen() {
   return (
@@ -18,7 +18,7 @@ function ExploreStackScreen() {
 }
 
 function WishlistStackScreen() {
-  return <WishlistScreen />;
+  return <WishlistStack />;
 }
 
 function InboxStackScreen() {
