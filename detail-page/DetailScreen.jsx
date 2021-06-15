@@ -109,8 +109,8 @@ const DetailScreen = ({ navigation }) => {
         </ScrollView>
       </View>
       <View style={{flexDirection: 'row', marginLeft: '20%'}}>
-        <FAB extended label="message host" style={styles.FAB} onPress={() => navigation.navigate("Booking")}/>
-        <FAB extended label="book now" style={styles.FAB}/>
+        <FAB extended label="message host" style={styles.FAB} />
+        <FAB extended label="book now" style={styles.FAB} onPress={() => navigation.navigate("Booking")}/>
       </View>
     </View>
   )

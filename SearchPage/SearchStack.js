@@ -7,6 +7,8 @@ import BookingScreen from '../detail-page/BookingScreen';
 
 const InnerStack = createStackNavigator()
 
+//to add for profile and inbox
+
 const SearchStack = () => {
   //add back the safe area view here
   return (

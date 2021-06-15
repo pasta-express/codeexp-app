@@ -16,7 +16,7 @@ import { Card, Button } from 'react-native-paper'
 
 const NORMAL_WIDTH = Dimensions.get('window').width
 
-const BookingScreen = () => {
+const BookingScreen = ({ navigation }) => {
   const [range, setRange] = useState({ startDate: undefined, endDate: undefined})
 
   const [open, setOpen] = useState(false)
@@ -36,11 +36,12 @@ const BookingScreen = () => {
     [setOpen, setRange]
   );
 
-  const ButtonRow = () => {
+  const ButtonRow = ({ navigation }) => {
     return (
       <View style={styles.buttonRow}>
         <Button 
           mode='contained' 
+          onPress={() => navigation.navigate("Details")}
           labelStyle={{color: 'black'}} 
           style={{height: '50%', justifyContent: 'center'}} 
           contentStyle={styles.cancelButton}>
@@ -81,7 +82,7 @@ const BookingScreen = () => {
         </Button>
         <DatesRow />
         <Text style={styles.priceText}>Price: $140</Text>
-        <ButtonRow />
+        <ButtonRow navigation={navigation} />
         <DatePickerModal
           locale={'en'}
           mode="range"
@@ -109,10 +110,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     width: '95%',
     paddingHorizontal: 8,
-    marginTop: '50%',
     borderRadius: 20,
     borderWidth: 1,
     flex: 0.6,
+    marginTop: '20%',
     borderColor: 'black',
     flexWrap: 'wrap',
     justifyContent: 'center',
