@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { SafeAreaView, StyleSheet, FlatList } from "react-native";
 import { Searchbar } from "react-native-paper";
 import { ListCard } from "./components/ListCard";
-
 const SAMPLE_IMAGE_URL =
   "https://locations-api-production.imgix.net/locations/image/35be52d4-1240-11eb-af66-0eb0aa9dee1d/Web_150DPI-20200908_WeWork_9_Battery_Rd_-_Singapore_005.jpg?auto=format%20compress&fit=crop&q=50&w=1800&h=1013";
 
+  
 const SAMPLE_LISTINGS = [
   {
     id: "0",
@@ -56,7 +56,7 @@ const SAMPLE_LISTINGS = [
 
 const SAMPLE_WISHLIST = [{ id: "0" }, { id: "2" }, { id: "4" }];
 
-export const SearchScreen = () => {
+export const SearchScreen = (props) => {
   const [searchInput, setSearchInput] = useState("");
   const [listings, setListings] = useState(SAMPLE_LISTINGS);
 
@@ -79,7 +79,7 @@ export const SearchScreen = () => {
       (wishlist) => wishlist.id === id
     );
 
-    return <ListCard isListingWishlisted={isListingWishlisted} {...item} />;
+    return <ListCard key={id} isListingWishlisted={isListingWishlisted} {...item} navigation={props.navigation} />;
   }
 
   return (
