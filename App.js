@@ -5,13 +5,14 @@ import DetailScreen from './detail-page/DetailScreen';
 import BookingScreen from './detail-page/BookingScreen';
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import SearchScreen from './SearchPage/SearchScreen';
+import WishlistScreen from './WishlistPage/WishlistScreen';
 
-
-const Stack = createStackNavigator()
+const Stack = createStackNavigator();
 export default function App() {
   return (
     <View style={styles.container}>
-      <BookingScreen />
+      <WishlistScreen />
       {/* <DetailScreen /> */}
       <StatusBar style="auto" />
     </View>
