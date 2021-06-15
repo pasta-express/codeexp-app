@@ -106,3 +106,5 @@ const styles = StyleSheet.create({
     margin: 15,
   },
 });
+
+export default SearchScreen

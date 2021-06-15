@@ -11,7 +11,7 @@ import {
   ScrollView
 } from "react-native";
 
-import Carousel, { Pagination } from 'react-native-snap-carousel'
+import Carousel from 'react-native-snap-carousel'
 
 import { createStackNavigator } from "@react-navigation/stack";
 
