@@ -8,7 +8,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Feather, Ionicons, FontAwesome } from "@expo/vector-icons";
 import { ProfileStackScreen } from './profileScreen/ProfileStackScreen';
-import { ProfileStackScreen } from "./profileScreen/ProfileStackScreen";
 import { WishlistStack } from "./WishlistPage/WishlistStack";
 import SearchScreen from "./SearchPage/SearchScreen";
 import SearchStack from './SearchPage/SearchStack';
