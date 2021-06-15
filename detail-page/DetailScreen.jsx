@@ -11,15 +11,29 @@ import {
   ScrollView
 } from "react-native";
 
-import Carousel from 'react-native-snap-carousel'
+// import Carousel from 'react-native-snap-carousel'
 
-import { Card } from 'react-native-paper'
+import { createStackNavigator } from "@react-navigation/stack";
+
+import { Card, FAB } from 'react-native-paper'
 
 const SLIDER_WIDTH = Dimensions.get('window').width + 200
 
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7)
 
 const features = ['Accommodates 4-6 pax', 'WiFi', 'Aircon', 'Free Parking', 'Coffeebar', 'Comfortable furniture', 'Projector', 'Omnidesk']
+
+//===============================Images=================================================
+const ImageCard = ({ item, index }) => {
+  return (
+    <View>
+      <Image
+        source={{ uri: 'https://picsum.photos/id/11/200/300'}}
+        style={styles.image}
+      />
+    </View>
+  )
+}
 
 // const data = [
 //   {
@@ -39,17 +53,6 @@ const features = ['Accommodates 4-6 pax', 'WiFi', 'Aircon', 'Free Parking', 'Cof
 //   }
 // ]
 
-
-const ImageCard = ({ item, index }) => {
-  return (
-    <View>
-      <Image
-        source={{ uri: 'https://picsum.photos/id/11/200/300'}}
-        style={styles.image}
-      />
-    </View>
-  )
-}
 
 // const CarouselCards = () => {
 //   const isCarousel = React.useRef(null)
@@ -71,6 +74,9 @@ const ImageCard = ({ item, index }) => {
 
 // }
 
+//================================================Images===============================================================================
+//================================================Content==============================================================================
+
 const DescriptionCard = () => {
 
   return (
@@ -85,10 +91,11 @@ const FeatureCard = () => {
   return (
     <Card style={styles.box}>
       <Text style={styles.descTitle}>Features</Text>
-      {features.map(f => <Text>{f}</Text>)}
+      {features.map(f => <Text style={styles.descMain}>{`\u2714`}{f}</Text>)}
     </Card>
   )
 }
+//=================================================Content===============================================================================
 
 
 const DetailScreen = () => {
@@ -96,14 +103,19 @@ const DetailScreen = () => {
   return (
     <View style={styles.container}>
       <ImageCard />
-      <ScrollView styles={styles.scrollView}>
+      <ScrollView styles={styles.scrollView} showsVerticalScrollIndicator={false}>
         <DescriptionCard />
         <FeatureCard />
       </ScrollView>
+      <View style={{flexDirection: 'row', marginLeft: '20%'}}>
+        <FAB extended label="message host" style={styles.FAB} onPress={() => console.log("hello")}/>
+        <FAB extended label="book now" style={styles.FAB}/>
+      </View>
     </View>
   )
 }
 
+//=================================================Stylesheet=============================================================================
 
 const styles = StyleSheet.create({
   container: {
@@ -120,6 +132,7 @@ const styles = StyleSheet.create({
     //this is the text box
     backgroundColor: 'white',
     width: '95%',
+    marginLeft: '2.5%',
     paddingHorizontal: 8,
     borderRadius: 20,
     borderWidth: 1,
@@ -143,10 +156,14 @@ const styles = StyleSheet.create({
   image: {
     //this is the image
     width: ITEM_WIDTH,
-    borderWidth: 5,
     height: '60%',
   },
+  FAB: {
+    backgroundColor: '#6200ee'
+  }
 })
+
+///===========================================Stylesheet==============================================================================
 
 
 export default DetailScreen
