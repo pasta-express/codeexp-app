@@ -10,7 +10,7 @@ import {
   ScrollView,
 } from "react-native";
 import { DatePickerModal } from "react-native-paper-dates";
-import moment from "moment";
+//import moment from "moment";
 
 import { Card, Button } from "react-native-paper";
 
