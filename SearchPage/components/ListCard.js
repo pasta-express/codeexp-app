@@ -2,16 +2,17 @@ import React from "react";
 import { View, StyleSheet, Text, Image, TouchableOpacity } from "react-native";
 import { ListCardInfo } from "./ListCardInfo";
 import moment from "moment";
+import { useNavigation } from "@react-navigation/native";
 
 const formatDate = (date) => {
   return moment(date).format("Do MMM YY");
 };
 
 export const ListCard = (props) => {
-  const { coverImage } = props;
+  const { coverImage, navigation, route } = props;
 
   const handlePress = () => {
-    console.log("Navigate to detail page");
+    navigation.navigate("Details")
   };
 
   return (
