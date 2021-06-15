@@ -1,4 +1,5 @@
 import "react-native-gesture-handler";
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
@@ -7,7 +8,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Feather, Ionicons, FontAwesome } from "@expo/vector-icons";
 import { ProfileStackScreen } from './profileScreen/ProfileStackScreen';
-import SearchScreen from "./SearchPage/SearchScreen";
 import SearchStack from './SearchPage/SearchStack';
 import { WishlistScreen } from "./WishlistPage/WishlistScreen";
 

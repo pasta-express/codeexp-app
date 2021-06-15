@@ -95,7 +95,7 @@ const FeatureCard = () => {
 //=================================================Content===============================================================================
 
 
-const DetailScreen = () => {
+const DetailScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
@@ -109,7 +109,7 @@ const DetailScreen = () => {
         </ScrollView>
       </View>
       <View style={{flexDirection: 'row', marginLeft: '20%'}}>
-        <FAB extended label="message host" style={styles.FAB} onPress={() => console.log("hello")}/>
+        <FAB extended label="message host" style={styles.FAB} onPress={() => navigation.navigate("Booking")}/>
         <FAB extended label="book now" style={styles.FAB}/>
       </View>
     </View>
