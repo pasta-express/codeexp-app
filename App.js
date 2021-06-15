@@ -3,6 +3,10 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import firebase from "firebase";
+import { firebaseConfig } from "./config/firebaseConfig";
+firebase.initializeApp(firebaseConfig);
+
 
 import Login from "./Login";
 import Signup from "./Signup";
