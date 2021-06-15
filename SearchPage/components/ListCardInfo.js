@@ -22,16 +22,17 @@ export const ListCardInfo = (information) => {
       <Text style={{ fontWeight: "bold", fontSize: 18 }}>{companyName}</Text>
       <Text>{`${formatDate(startDate)} to ${formatDate(endDate)}`}</Text>
       <Text>{location}</Text>
-      <Text>{`$${price}/day`}</Text>
-      <FavouriteButton isFavourite={isListingWishlisted} />
+      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+        <Text>{`$${price}/day`}</Text>
+        <FavouriteButton isFavourite={isListingWishlisted} />
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     flexDirection: "column",
     justifyContent: "space-evenly",
   },
