@@ -62,14 +62,22 @@ const SAMPLE_LISTINGS = [
   },
 ];
 
-export const WishlistScreen = () => {
+export const WishlistScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
         data={SAMPLE_LISTINGS}
-        renderItem={({ item }) => (
-          <ListCard isListingWishlisted={true} {...item} />
-        )}
+        renderItem={({ item }) => {
+          const { id } = item;
+          return (
+            <ListCard
+              key={id}
+              navigation={navigation}
+              isListingWishlisted={true}
+              {...item}
+            />
+          );
+        }}
       />
     </SafeAreaView>
   );
@@ -87,4 +95,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default WishlistScreen
+export default WishlistScreen;
