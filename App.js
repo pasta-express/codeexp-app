@@ -9,6 +9,7 @@ import { Feather, Ionicons, FontAwesome } from "@expo/vector-icons";
 import { ProfileStackScreen } from './profileScreen/ProfileStackScreen';
 import SearchScreen from "./SearchPage/SearchScreen";
 import SearchStack from './SearchPage/SearchStack';
+import { WishlistScreen } from "./WishlistPage/WishlistScreen";
 
 function ExploreStackScreen() {
   return (
@@ -19,11 +20,7 @@ function ExploreStackScreen() {
 }
 
 function WishlistStackScreen() {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Wishlist Screen</Text>
-    </View>
-  );
+  return <WishlistScreen />;
 }
 
 function InboxStackScreen() {
@@ -83,8 +80,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#9fa3cc',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#9fa3cc",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
