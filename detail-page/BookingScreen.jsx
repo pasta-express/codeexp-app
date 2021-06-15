@@ -12,8 +12,9 @@ import {
 import { DatePickerModal } from 'react-native-paper-dates';
 import moment from 'moment'
   
-import { Card, FAB, Button } from 'react-native-paper'
+import { Card, Button } from 'react-native-paper'
 
+const NORMAL_WIDTH = Dimensions.get('window').width
 
 const BookingScreen = () => {
   const [range, setRange] = useState({ startDate: undefined, endDate: undefined})
@@ -38,10 +39,18 @@ const BookingScreen = () => {
   const ButtonRow = () => {
     return (
       <View style={styles.buttonRow}>
-        <Button>
+        <Button 
+          mode='contained' 
+          labelStyle={{color: 'black'}} 
+          style={{height: '50%', justifyContent: 'center'}} 
+          contentStyle={styles.cancelButton}>
           Cancel
         </Button>
-        <Button>
+        <Button           
+          mode='contained' 
+          labelStyle={{color: 'black'}} 
+          style={{height: '50%', justifyContent: 'center'}} 
+          contentStyle={styles.confirmButtion}>
           {/*on confirm will take the user to the myprofile screen, and the info of the booking will be made there. We ignore payment methods for now*/}
           Confirm
         </Button>
@@ -51,60 +60,96 @@ const BookingScreen = () => {
 
   const DatesRow = () => {
     return (
-      <View>
-        <Text style={styles.dateText}>Start Date {!range.startDate ? '' : moment(range.startDate).format('LL')}</Text>
-        <Text style={styles.dateText}>End Date {!range.endDate ? '' : moment(range.endDate).format('LL')}</Text>
+      <View style={styles.datesRow}>
+        <Text style={styles.dateText}>Start Date: {!range.startDate ? '' : moment(range.startDate).format('LL')}</Text>
+        <Text style={styles.dateText}>End Date: {!range.endDate ? '' : moment(range.endDate).format('LL')}</Text>
       </View>
     )
   }
   
   return (
-    <Card style={styles.box}>
-      <Button onPress={() => setOpen(true)} uppercase={true} mode="outlined" style={styles.dateButton}>
-        Pick Dates
-      </Button>
-      <DatesRow />
-      <Text>$Price</Text>
-      <ButtonRow />
-      <DatePickerModal
-        locale={'en'}
-        mode="range"
-        visible={open}
-        onDismiss={onDismiss}
-        startDate={range.startDate}
-        endDate={range.endDate}
-        onConfirm={onConfirm} />
-    </Card>
+    <View style={styles.container}>
+      <Card style={styles.box}>
+        <Button 
+          onPress={() => setOpen(true)} 
+          uppercase={true} 
+          mode="contained" 
+          labelStyle={{color: 'black'}} 
+          style={styles.dateButton} 
+          contentStyle={{backgroundColor: '#c4c4c4', width: '100%', height: '100%'}}>
+          Pick Dates
+        </Button>
+        <DatesRow />
+        <Text style={styles.priceText}>Price: $140</Text>
+        <ButtonRow />
+        <DatePickerModal
+          locale={'en'}
+          mode="range"
+          visible={open}
+          onDismiss={onDismiss}
+          startDate={range.startDate}
+          endDate={range.endDate}
+          onConfirm={onConfirm} />
+      </Card>
+
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#9fa3cc',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    width: NORMAL_WIDTH
+  },
+  box: {
+    backgroundColor: 'white',
+    width: '95%',
+    paddingHorizontal: 8,
+    marginTop: '50%',
+    borderRadius: 20,
+    borderWidth: 1,
+    flex: 0.6,
+    borderColor: 'black',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    flexDirection: 'row'
+  },
   dateButton: {
-    backgroundColor: '#c4c4c4',
-    padding: 20,
-    margin: 20,
-    width: '80%',
-    alignContent: 'center'
+    flex: 0.5,
+    marginTop: 20,
+    justifyContent: 'center',
   },
   dateText: {
     fontSize: 24,
-    padding: 10
+    padding: 10,
   },
-  box: {
-    //this is the text box
-    backgroundColor: 'white',
-    width: '95%',
-    marginLeft: '2.5%',
-    paddingHorizontal: 8,
-    borderRadius: 20,
-    borderWidth: 1,
-    borderColor: 'black',
-    flexWrap: 'wrap',
-    justifyContent: 'center'
+  priceText: {
+    fontSize: 24,
+    padding: 10,
   },
   buttonRow: {
-    flexDirection: 'row'
-  }
+    flex: 1,
+    justifyContent: 'flex-end',
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    height: 1,
+  },
+  cancelButton: {
+    flexDirection: 'row-reverse', 
+    justifyContent: 'flex-end', 
+    backgroundColor: '#c4c4c4', 
+    height: '100%'
+  },
+  confirmButtion: {
+    flexDirection: 'row-reverse', 
+    justifyContent: 'flex-end', 
+    height: '100%', 
+    borderWidth: 2
+  },
 })
 
 export default BookingScreen

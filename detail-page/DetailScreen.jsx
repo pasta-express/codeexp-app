@@ -11,7 +11,7 @@ import {
   ScrollView
 } from "react-native";
 
-import Carousel from 'react-native-snap-carousel'
+import Carousel, { Pagination } from 'react-native-snap-carousel'
 
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -30,51 +30,46 @@ const ImageCard = ({ item, index }) => {
   return (
     <View>
       <Image
-        source={{ uri: 'https://picsum.photos/id/11/200/300'}}
+        source={{ uri: item.imgUrl}}
         style={styles.image}
       />
     </View>
   )
 }
 
-// const data = [
-//   {
-//     title: "Aenean leo",
-//     body: "Ut tincidunt tincidunt erat. Sed cursus turpis vitae tortor. Quisque malesuada placerat nisl. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.",
-//     imgUrl: "https://picsum.photos/id/11/200/300"
-//   },
-//   {
-//     title: "In turpis",
-//     body: "Aenean ut eros et nisl sagittis vestibulum. Donec posuere vulputate arcu. Proin faucibus arcu quis ante. Curabitur at lacus ac velit ornare lobortis. ",
-//     imgUrl: "https://picsum.photos/id/10/200/300"
-//   },
-//   {
-//     title: "Lorem Ipsum",
-//     body: "Phasellus ullamcorper ipsum rutrum nunc. Nullam quis ante. Etiam ultricies nisi vel augue. Aenean tellus metus, bibendum sed, posuere ac, mattis non, nunc.",
-//     imgUrl: "https://picsum.photos/id/12/200/300"
-//   }
-// ]
+const data = [
+  {
+    imgUrl: "https://picsum.photos/id/11/200/300"
+  },
+  {
+    imgUrl: "https://picsum.photos/id/10/200/300"
+  },
+  {
+    imgUrl: "https://picsum.photos/id/12/200/300"
+  }
+]
 
 
-// const CarouselCards = () => {
-//   const isCarousel = React.useRef(null)
+const CarouselCards = () => {
+  const [index, setIndex] = React.useState(0)
+  const isCarousel = React.useRef(null)
 
-//   return (
-//     <View style={styles.carousel}>
-//       <Carousel
-//         layoutCardOffset={9}
-//         ref={isCarousel}
-//         data={data}
-//         renderItem={ImageCard}
-//         sliderWidth={SLIDER_WIDTH}
-//         itemWidth={ITEM_WIDTH}
-//         inactiveSlideShift={0}
-//         useScrollView={true}
-//       />
-//     </View>
-//   )
+  return (
+    <View style={styles.carousel}>
+      <Carousel
+        layoutCardOffset={9}
+        ref={isCarousel}
+        data={data}
+        renderItem={ImageCard}
+        sliderWidth={NORMAL_WIDTH}
+        itemWidth={ITEM_WIDTH}
+        inactiveSlideShift={0}
+        useScrollView={true}
+      />
+    </View>
+  )
 
-// }
+}
 
 //================================================Images===============================================================================
 //================================================Content==============================================================================
@@ -104,8 +99,8 @@ const DetailScreen = () => {
 
   return (
     <View style={styles.container}>
-      <View style={{borderWidth: 5, borderColor: 'blue', flex: 1, width:NORMAL_WIDTH}}>
-        <ImageCard />
+      <View style={styles.carousel}>
+        <CarouselCards />
       </View>
       <View style={styles.scrollView} >
         <ScrollView showsVerticalScrollIndicator={false}>
@@ -133,11 +128,9 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     flex: 2,
-    borderWidth: 5,
-    borderColor: 'red'
+    margin: 5
   },
   box: {
-    //this is the text box
     backgroundColor: 'white',
     width: '100%',
     paddingHorizontal: 8,
@@ -158,12 +151,9 @@ const styles = StyleSheet.create({
   },
   carousel: {
     flex: 1,
-    justifyContent: 'flex-start',
+    width: NORMAL_WIDTH
   },
   image: {
-    //this is the image
-    borderWidth: 5,
-    borderColor: 'red',
     width: '100%',
     height: '100%',
   },

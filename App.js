@@ -11,8 +11,8 @@ const Stack = createStackNavigator()
 export default function App() {
   return (
     <View style={styles.container}>
-      {/* <BookingScreen /> */}
-      <DetailScreen />
+      <BookingScreen />
+      {/* <DetailScreen /> */}
       <StatusBar style="auto" />
     </View>
   );
