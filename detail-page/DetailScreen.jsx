@@ -11,13 +11,15 @@ import {
   ScrollView
 } from "react-native";
 
-// import Carousel from 'react-native-snap-carousel'
+import Carousel from 'react-native-snap-carousel'
 
 import { createStackNavigator } from "@react-navigation/stack";
 
 import { Card, FAB } from 'react-native-paper'
 
 const SLIDER_WIDTH = Dimensions.get('window').width + 200
+
+const NORMAL_WIDTH = Dimensions.get('window').width
 
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7)
 
@@ -102,11 +104,15 @@ const DetailScreen = () => {
 
   return (
     <View style={styles.container}>
-      <ImageCard />
-      <ScrollView styles={styles.scrollView} showsVerticalScrollIndicator={false}>
-        <DescriptionCard />
-        <FeatureCard />
-      </ScrollView>
+      <View style={{borderWidth: 5, borderColor: 'blue', flex: 1, width:NORMAL_WIDTH}}>
+        <ImageCard />
+      </View>
+      <View style={styles.scrollView} >
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <DescriptionCard />
+          <FeatureCard />
+        </ScrollView>
+      </View>
       <View style={{flexDirection: 'row', marginLeft: '20%'}}>
         <FAB extended label="message host" style={styles.FAB} onPress={() => console.log("hello")}/>
         <FAB extended label="book now" style={styles.FAB}/>
@@ -119,20 +125,21 @@ const DetailScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     backgroundColor: '#9fa3cc',
-    justifyContent: 'flex-start',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'flex-start'
   },
   scrollView: {
-    flex: 1,
+    flex: 2,
+    borderWidth: 5,
+    borderColor: 'red'
   },
   box: {
     //this is the text box
     backgroundColor: 'white',
-    width: '95%',
-    marginLeft: '2.5%',
+    width: '100%',
     paddingHorizontal: 8,
     borderRadius: 20,
     borderWidth: 1,
@@ -155,8 +162,10 @@ const styles = StyleSheet.create({
   },
   image: {
     //this is the image
-    width: ITEM_WIDTH,
-    height: '60%',
+    borderWidth: 5,
+    borderColor: 'red',
+    width: '100%',
+    height: '100%',
   },
   FAB: {
     backgroundColor: '#6200ee'
