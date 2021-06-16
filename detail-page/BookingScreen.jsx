@@ -100,7 +100,7 @@ const BookingScreen = ({ navigation }) => {
         </Button>
         <DatesRow />
         <Text style={styles.priceText}>Price: $140</Text>
-        <ButtonRow />
+        <ButtonRow navigation={navigation} />
         <DatePickerModal
           locale={"en"}
           mode="range"
