@@ -13,29 +13,9 @@ if (!firebase.apps.length) {
   firebase.app(); // if already initialized, use that one
 }
 
-const SAMPLE_IMAGE_URL =
-  "https://locations-api-production.imgix.net/locations/image/35be52d4-1240-11eb-af66-0eb0aa9dee1d/Web_150DPI-20200908_WeWork_9_Battery_Rd_-_Singapore_005.jpg?auto=format%20compress&fit=crop&q=50&w=1800&h=1013";
-
-const SAMPLE_USER = {
-  name: "Tom",
-  email: "test@gmail.com",
-  password: "password",
-  profileImage: SAMPLE_IMAGE_URL,
-  favourites: ["1", "2"],
-  currentBookings: [
-    {
-      id: "1",
-      startDate: Date.now(),
-      endDate: Date.now(),
-    },
-    {
-      id: "2",
-      startDate: Date.now(),
-      endDate: Date.now(),
-    },
-  ],
-};
 const dbSampleUsers = firebase.firestore().collection("sample-users");
+
+//eventually need to identify the logged in user and only extract info for the logged in user
 
 const ProfileScreen = (props) => {
   const [bookedListings, setBookedListings] = useState([])

@@ -3,7 +3,7 @@ import { View, StyleSheet, Text, Image } from "react-native";
 
 export const ProfileHeaderCard = (props) => {
   const { user } = props;
-  console.log(user)
+  // console.log(user)
   return (
     <View style={styles.container}>
       <Image
