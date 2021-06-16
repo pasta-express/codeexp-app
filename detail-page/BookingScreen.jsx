@@ -69,6 +69,7 @@ const BookingScreen = ({ route, navigation }) => {
       currBookings = snapshot.val();
     }
   })
+  /*
   if (currUser) {
     firebase.database()
           .ref("users/" + currUser.uid)
@@ -84,7 +85,7 @@ const BookingScreen = ({ route, navigation }) => {
             console.log("upload data to firebase failed: " + e);
     })
   }
-
+*/
   const linkBookings = (id) => {
     currBookings.push(id);
     if (currUser) {

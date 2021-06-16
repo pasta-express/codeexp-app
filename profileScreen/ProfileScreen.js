@@ -121,7 +121,7 @@ var bookedIds = []
 const ProfileScreen = (props) => {
 
   const db = firebase.firestore()
-  var docRef = db.collection("sample-listings").doc(bookedIds[0]);
+  
   
     if (currUser) {
       dbRef.child("users").child(currUser.uid).child('current_bookings').get().then((snapshot) => {
@@ -157,20 +157,21 @@ const ProfileScreen = (props) => {
   
   //const [user, setUser] = useState(null)
 
+  for (var i = 0; i < bookedIds.length; i++) {
+    var docRef = db.collection("sample-listings").doc(bookedIds[i]);
+    docRef.get().then((doc) => {
+        if (doc.exists) {
+            console.log("Document data:", doc.data());
+            bookedListings.push(doc.data());
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+        }
+    }).catch((error) => {
+        console.log("Error getting document:", error);
+    });
+  }
   
-
-  docRef.get().then((doc) => {
-      if (doc.exists) {
-          console.log("Document data:", doc.data());
-          bookedListings = (doc.data());
-      } else {
-          // doc.data() will be undefined in this case
-          console.log("No such document!");
-      }
-  }).catch((error) => {
-      console.log("Error getting document:", error);
-  });
-
   
 
   
