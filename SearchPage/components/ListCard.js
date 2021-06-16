@@ -21,7 +21,7 @@ export const ListCard = (props) => {
         <Image
           style={styles.image}
           source={{
-            uri: coverImage,
+            uri: coverImage[0],
           }}
         />
         <ListCardInfo {...props} />

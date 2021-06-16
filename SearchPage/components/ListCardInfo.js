@@ -22,7 +22,7 @@ export const ListCardInfo = (information) => {
   return (
     <View style={styles.container}>
       <Text style={{ fontWeight: "bold", fontSize: 18 }}>{companyName}</Text>
-      <Text>{`${formatDate(startDate)} to ${formatDate(endDate)}`}</Text>
+      <Text>{startDate} to {endDate}</Text>
       <Text>{location}</Text>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <Text>{`$${price}/day`}</Text>
