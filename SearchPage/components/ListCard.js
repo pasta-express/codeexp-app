@@ -13,6 +13,8 @@ export const ListCard = (props) => {
 
   const handlePress = () => {
     navigation.navigate("Details", {
+      description: props.description,
+      features: props.features,
       companyName: props.companyName,
       coverImage: props.coverImage,
       isListingWishListed: false,

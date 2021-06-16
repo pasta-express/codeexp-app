@@ -69,24 +69,24 @@ const CarouselCards = (coverImage) => {
 //================================================Images===============================================================================
 //================================================Content==============================================================================
 
-const DescriptionCard = () => {
+const DescriptionCard = ({ description }) => {
+  console.log(description)
   return (
     <Card style={styles.box}>
       <Text style={styles.descTitle}>Description</Text>
       <Text style={styles.descMain}>
-        Located at the heart of the CBD with a great view of Marina Bay. 3 Min
-        walk from Raffles Place MRT
+        {description}
       </Text>
     </Card>
   );
 };
 
-const FeatureCard = () => {
+const FeatureCard = ({ features }, { id }) => {
   return (
     <Card style={styles.box}>
       <Text style={styles.descTitle}>Features</Text>
       {features.map((f) => (
-        <Text style={styles.descMain}>
+        <Text key={id} style={styles.descMain}>
           {`\u2714`}
           {f}
         </Text>
@@ -97,6 +97,7 @@ const FeatureCard = () => {
 //=================================================Content===============================================================================
 
 const DetailScreen = ({route, navigation}) => {
+  console.log(route.params.description)
   useEffect(() => {
     navigation.setOptions({
       headerLeft: () => (
@@ -130,8 +131,8 @@ const DetailScreen = ({route, navigation}) => {
       </View>
       <View style={styles.scrollView}>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <DescriptionCard />
-          <FeatureCard />
+          <DescriptionCard description={route.params.description} />
+          <FeatureCard features={route.params.features} id={route.params.id} />
         </ScrollView>
       </View>
       <View style={{ width: "100%",
