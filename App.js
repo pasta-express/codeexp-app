@@ -15,6 +15,7 @@ import SearchStack from './SearchPage/SearchStack';
 import InboxScreen from "./InboxPage/Inbox";
 import Login from "./Login";
 import Signup from "./Signup";
+import LoginStack from "./LoginStack";
 
 import firebase from "firebase";
 import { firebaseConfig } from "./config/firebaseConfig";
@@ -85,7 +86,7 @@ export default function App() {
         <Tab.Screen name="Explore" component={SearchStack} />
         <Tab.Screen name="Wishlist" component={WishlistStackScreen} />
         <Tab.Screen name="Inbox" component={InboxStackScreen} />
-        <Tab.Screen name="Profile" component={loginScreen} />
+        <Tab.Screen name="Profile" component={LoginStack} />
       </Tab.Navigator>
     </NavigationContainer>
   );
