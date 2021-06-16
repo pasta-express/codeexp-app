@@ -10,13 +10,13 @@ import {
   ScrollView,
 } from "react-native";
 import { DatePickerModal } from "react-native-paper-dates";
-//import moment from "moment";
+import moment from "moment";
 
 import { Card, Button } from "react-native-paper";
 
 const NORMAL_WIDTH = Dimensions.get("window").width;
 
-const BookingScreen = ({ navigation }) => {
+const BookingScreen = ({ route, navigation }) => {
   const [range, setRange] = useState({
     startDate: undefined,
     endDate: undefined,
@@ -24,9 +24,22 @@ const BookingScreen = ({ navigation }) => {
 
   const [open, setOpen] = useState(false);
 
+  const [numDays, setNumDays] = useState(0)
+
   const onDismiss = React.useCallback(() => {
     setOpen(false);
   }, [setOpen]);
+
+  const getDiffDays = (date1, date2) => {
+    const diffInTime = date2.getTime() - date1.getTime()
+    const diffInDays = Math.round(diffInTime / (1000 * 3600 * 24))
+    const extra = diffInDays + 1
+    if (diffInDays === 0) {
+      setNumDays(extra)
+    } else {
+      setNumDays(diffInDays)
+    }
+  }
 
   const onConfirm = React.useCallback(
     ({ startDate, endDate }) => {
@@ -35,6 +48,7 @@ const BookingScreen = ({ navigation }) => {
         endDate = startDate;
       }
       setRange({ startDate, endDate });
+      getDiffDays(startDate, endDate)
     },
     [setOpen, setRange]
   );
@@ -49,6 +63,7 @@ const BookingScreen = ({ navigation }) => {
         <Button
           mode="contained"
           style={styles.cancelButton}
+          onPress={() => navigation.navigate("Details")}
         >
           Cancel
         </Button>
@@ -95,7 +110,7 @@ const BookingScreen = ({ navigation }) => {
           Pick Dates
         </Button>
         <DatesRow />
-        <Text style={styles.priceText}>Price: $140</Text>
+        <Text style={styles.priceText}>Price: ${numDays * route.params.price}</Text>
         <ButtonRow navigation={navigation} />
         <DatePickerModal
           locale={"en"}
@@ -162,12 +177,12 @@ const styles = StyleSheet.create({
   cancelButton: {
     color: "white",
     backgroundColor: "black",
-    height: "45%",
+    height: "100%",
     borderRadius: 20,
     width: "35%"
   },
   confirmButtion: {
-    height: "45%",
+    height: "100%",
     backgroundColor: "black",
     color: "white",
     borderRadius: 20,

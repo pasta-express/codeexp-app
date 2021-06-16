@@ -39,28 +39,15 @@ const features = [
 ];
 
 //===============================Images=================================================
-const ImageCard = ({ item, index }) => {
+const ImageCard = ({ item }) => {
   return (
     <View>
-      <Image source={{ uri: item.imgUrl }} style={styles.image} />
+      <Image source={{ uri: item }} style={styles.image} />
     </View>
   );
 };
 
-const data = [
-  {
-    imgUrl: "https://picsum.photos/id/11/200/300",
-  },
-  {
-    imgUrl: "https://picsum.photos/id/10/200/300",
-  },
-  {
-    imgUrl: "https://picsum.photos/id/12/200/300",
-  },
-];
-
-const CarouselCards = () => {
-  const [index, setIndex] = React.useState(0);
+const CarouselCards = (coverImage) => {
   const isCarousel = React.useRef(null);
 
   return (
@@ -68,7 +55,7 @@ const CarouselCards = () => {
       <Carousel
         layoutCardOffset={9}
         ref={isCarousel}
-        data={data}
+        data={coverImage.images}
         renderItem={ImageCard}
         sliderWidth={NORMAL_WIDTH}
         itemWidth={ITEM_WIDTH}
@@ -82,24 +69,23 @@ const CarouselCards = () => {
 //================================================Images===============================================================================
 //================================================Content==============================================================================
 
-const DescriptionCard = () => {
+const DescriptionCard = ({ description }) => {
   return (
     <Card style={styles.box}>
       <Text style={styles.descTitle}>Description</Text>
       <Text style={styles.descMain}>
-        Located at the heart of the CBD with a great view of Marina Bay. 3 Min
-        walk from Raffles Place MRT
+        {description}
       </Text>
     </Card>
   );
 };
 
-const FeatureCard = () => {
+const FeatureCard = ({ features }, { id }) => {
   return (
     <Card style={styles.box}>
       <Text style={styles.descTitle}>Features</Text>
       {features.map((f) => (
-        <Text style={styles.descMain}>
+        <Text key={id} style={styles.descMain}>
           {`\u2714`}
           {f}
         </Text>
@@ -109,7 +95,7 @@ const FeatureCard = () => {
 };
 //=================================================Content===============================================================================
 
-const DetailScreen = ({ navigation }) => {
+const DetailScreen = ({route, navigation}) => {
   useEffect(() => {
     navigation.setOptions({
       headerLeft: () => (
@@ -139,12 +125,12 @@ const DetailScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.carousel}>
-        <CarouselCards />
+        <CarouselCards images={route.params.coverImage} />
       </View>
       <View style={styles.scrollView}>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <DescriptionCard />
-          <FeatureCard />
+          <DescriptionCard description={route.params.description} />
+          <FeatureCard features={route.params.features} id={route.params.id} />
         </ScrollView>
       </View>
       <View style={{ width: "100%",
@@ -159,7 +145,21 @@ const DetailScreen = ({ navigation }) => {
           style={styles.FAB}
           onPress={() => console.log("hello")}
         />
-        <FAB extended label="book now" style={styles.FAB} onPress={() => navigation.navigate("Booking")} />
+        <FAB 
+          extended label="book now" 
+          style={styles.FAB} 
+          onPress={() => navigation.navigate("Booking", {
+            description: route.params.description,
+            features: route.params.features,
+            companyName: route.params.companyName,
+            coverImage: route.params.coverImage,
+            isListingWishListed: false,
+            id: route.params.id,
+            location: route.params.location,
+            startDate: route.params.startDate,
+            endDate: route.params.endDate,
+            price: route.params.price
+          })} />
       </View>
     </View>
   );

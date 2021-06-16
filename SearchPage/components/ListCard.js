@@ -12,7 +12,18 @@ export const ListCard = (props) => {
   const { coverImage, navigation, route } = props;
 
   const handlePress = () => {
-    navigation.navigate("Details")
+    navigation.navigate("Details", {
+      description: props.description,
+      features: props.features,
+      companyName: props.companyName,
+      coverImage: props.coverImage,
+      isListingWishListed: false,
+      id: props.id,
+      location: props.location,
+      startDate: props.startDate,
+      endDate: props.endDate,
+      price: props.price
+    })
   };
 
   return (
@@ -21,7 +32,7 @@ export const ListCard = (props) => {
         <Image
           style={styles.image}
           source={{
-            uri: coverImage,
+            uri: coverImage[0],
           }}
         />
         <ListCardInfo {...props} />
