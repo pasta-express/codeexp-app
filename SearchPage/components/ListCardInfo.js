@@ -37,5 +37,8 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     flexDirection: "column",
     justifyContent: "space-evenly",
+    paddingLeft: 15,
+    paddingRight: 15,
+    width: "70%"
   },
 });
