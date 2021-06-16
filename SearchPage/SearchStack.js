@@ -4,6 +4,7 @@ import SearchScreen from "./SearchScreen";
 import DetailScreen from "../detail-page/DetailScreen";
 import BookingScreen from "../detail-page/BookingScreen";
 import ProfileScreen from "../profileScreen/ProfileScreen"
+import MessageScreen from "../InboxPage/Conversation"
 
 const InnerStack = createStackNavigator();
 
@@ -28,6 +29,10 @@ const SearchStack = () => {
       <InnerStack.Screen 
         name="Profile"
         component={ProfileScreen}
+      />
+      <InnerStack.Screen
+        name="Message"
+        component={MessageScreen}
       />
     </InnerStack.Navigator>
   );

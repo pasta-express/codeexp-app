@@ -13,10 +13,6 @@ import {
 import { DatePickerModal } from "react-native-paper-dates";
 import moment from "moment";
 
-import { Card, Button } from "react-native-paper";
-
-const NORMAL_WIDTH = Dimensions.get("window").width;
-
 const BookingScreen = ({ route, navigation }) => {
   const [range, setRange] = useState({
     startDate: undefined,
@@ -57,56 +53,6 @@ const BookingScreen = ({ route, navigation }) => {
   useEffect(() => {
     navigation.setOptions({ title: route.params.location });
   });
-
-  const ButtonRow = ({ navigation }) => {
-    return (
-      <View style={styles.buttonRow}>
-        <Button
-          mode="contained"
-          style={styles.cancelButton}
-          onPress={() => navigation.navigate("Details")}
-        >
-          Cancel
-        </Button>
-        <Button
-          mode="contained"
-          style={styles.confirmButtion}
-          onPress={() => {
-            if (!range.startDate || !range.endDate) {
-              Alert.alert("You have not chosen your dates!")
-            } else {
-              Alert.alert("Confirm booking?", "Payment will be processed upon confirmation",[
-                {
-                  text: 'Cancel',
-                  onPress: () => navigation.navigate("Booking")
-                },
-                {
-                  text: 'Confirm',
-                  onPress: () => navigation.navigate("Profile")
-                }
-              ])
-            }
-          }}
-        >
-          Confirm
-        </Button>
-      </View>
-    );
-  };
-
-  const DatesRow = () => {
-    return (
-      <View style={styles.datesRow}>
-        <Text style={styles.dateText}>
-          Start Date:{" "}
-          {!range.startDate ? "" : moment(range.startDate).format("LL")}
-        </Text>
-        <Text style={styles.dateText}>
-          End Date: {!range.endDate ? "" : moment(range.endDate).format("LL")}
-        </Text>
-      </View>
-    );
-  };
 
   return (
     <View style={styles.container}>
