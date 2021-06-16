@@ -19,10 +19,6 @@ if (!firebase.apps.length) {
   firebase.app(); // if already initialized, use that one
 }
 
-function InboxStackScreen() {
-  return <InboxScreen />;
-}
-
 export default function App() {
   const Tab = createBottomTabNavigator();
 
@@ -61,7 +57,7 @@ export default function App() {
       >
         <Tab.Screen name="Explore" component={SearchStack} />
         <Tab.Screen name="Wishlist" component={WishlistStack} />
-        <Tab.Screen name="Inbox" component={InboxStackScreen} />
+        <Tab.Screen name="Inbox" component={InboxScreen} />
         <Tab.Screen name="Profile" component={LoginStack} />
         <Tab.Screen name="ProfileScreen" component={ProfileStack} />
       </Tab.Navigator>
