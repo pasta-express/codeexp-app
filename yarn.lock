@@ -3596,7 +3596,7 @@
     "locate-path" "^6.0.0"
     "path-exists" "^4.0.0"
 
-"firebase@^8.2.3":
+"firebase@8.2.3":
   "integrity" "sha512-WdbcGSiLxiW/kGZT+EyqD9z3Md7kR35+k9qMjDn/twiIrm6Hh7Qi/Z69cqxhKW6+4uK5ghXIF28CjK67OyD9Qw=="
   "resolved" "https://registry.npmjs.org/firebase/-/firebase-8.2.3.tgz"
   "version" "8.2.3"
@@ -4872,6 +4872,11 @@
   "resolved" "https://registry.npmjs.org/mockdate/-/mockdate-3.0.5.tgz"
   "version" "3.0.5"
 
+"moment@^2.29.1":
+  "integrity" "sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ=="
+  "resolved" "https://registry.npmjs.org/moment/-/moment-2.29.1.tgz"
+  "version" "2.29.1"
+
 "ms@2.0.0":
   "integrity" "sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g="
   "resolved" "https://registry.npmjs.org/ms/-/ms-2.0.0.tgz"
@@ -5351,7 +5356,7 @@
   "resolved" "https://registry.npmjs.org/posix-character-classes/-/posix-character-classes-0.1.1.tgz"
   "version" "0.1.1"
 
-"prettier@2.3.1":
+"prettier@^2.3.1":
   "integrity" "sha512-p+vNbgpLjif/+D+DwAZAbndtRrR0md0MwfmOVN9N+2RgyACMT+7tfaRnT+WDPkqnuVwleyuBIG2XBxKDme3hPA=="
   "resolved" "https://registry.npmjs.org/prettier/-/prettier-2.3.1.tgz"
   "version" "2.3.1"

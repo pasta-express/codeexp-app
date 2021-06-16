@@ -145,7 +145,21 @@ const DetailScreen = ({route, navigation}) => {
           style={styles.FAB}
           onPress={() => console.log("hello")}
         />
-        <FAB extended label="book now" style={styles.FAB} onPress={() => navigation.navigate("Booking")} />
+        <FAB 
+          extended label="book now" 
+          style={styles.FAB} 
+          onPress={() => navigation.navigate("Booking", {
+            description: route.params.description,
+            features: route.params.features,
+            companyName: route.params.companyName,
+            coverImage: route.params.coverImage,
+            isListingWishListed: false,
+            id: route.params.id,
+            location: route.params.location,
+            startDate: route.params.startDate,
+            endDate: route.params.endDate,
+            price: route.params.price
+          })} />
       </View>
     </View>
   );
