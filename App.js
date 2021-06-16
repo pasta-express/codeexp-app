@@ -21,7 +21,7 @@ import { firebaseConfig } from "./config/firebaseConfig";
 //firebase.initializeApp(firebaseConfig);
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
-}else {
+} else {
   firebase.app(); // if already initialized, use that one
 }
 

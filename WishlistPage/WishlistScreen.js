@@ -4,7 +4,7 @@ import { ListCard } from "../SearchPage/components/ListCard";
 import firebase from "firebase";
 
 import { firebaseConfig } from "../config/firebaseConfig";
-//firebase.initializeApp(firebaseConfig);
+
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 } else {

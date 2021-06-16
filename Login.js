@@ -3,6 +3,14 @@ import { TouchableWithoutFeedback, Keyboard } from "react-native";
 import { View, Text, TextInput, StyleSheet, Image, TouchableOpacity } from "react-native";
 import firebase from "firebase";
 import * as Google from 'expo-google-app-auth';
+import { firebaseConfig } from "./config/firebaseConfig";
+//firebase.initializeApp(firebaseConfig);
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+} else {
+  firebase.app(); // if already initialized, use that one
+}
+var database = firebase.database();
 
 const DismissKeyboardHOC = (Comp) => {
   	return ({ children, ...props }) => (
@@ -54,6 +62,22 @@ export default class Login extends Component {
 				firebase.auth().signInWithCredential(credential)
 					.then((result) => {
 						console.log("user signed in");
+						if (result.additionalUserInfo.isNewUser) {
+							console.log("new user")
+							firebase
+							  	.database()
+							  	.ref("users/" + result.user.uid)
+							  	.set({
+									gmail: result.user.email,
+									profile_picture: result.additionalUserInfo.profile.picture,
+									username: result.user.displayName,
+									uid: result.user.uid,
+							  	}).catch(function(e) {
+									  console.log("upload data to firebase failed: " + e);
+								})
+						  	} else {
+								console.log("old user")
+							}
 					})
 					.catch(function (error) {
 						console.log(error);
