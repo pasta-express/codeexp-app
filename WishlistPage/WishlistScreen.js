@@ -39,7 +39,7 @@ export const WishlistScreen = ({ navigation }) => {
   });
 
   useEffect(() => {
-    /*
+    
     const unsubscribe = dbSampleUsers.onSnapshot((collection) => {
       const updatedUsers = collection.docs.map((doc) => {
         return {
@@ -53,21 +53,21 @@ export const WishlistScreen = ({ navigation }) => {
     return () => {
       unsubscribe();
     };
-    */
-    const unsubscribe = dbRef
-      .child("users")
-      .child(currUser.uid)
-      .child("wishlist")
-      .get()
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          console.log(snapshot.val());
-          setWishlists(snapshot.val());
-        }
-      });
-    return () => {
-      unsubscribe;
-    };
+   
+    // const unsubscribe = dbRef
+    //   .child("users")
+    //   .child(currUser.uid)
+    //   .child("wishlist")
+    //   .get()
+    //   .then((snapshot) => {
+    //     if (snapshot.exists()) {
+    //       console.log(snapshot.val());
+    //       setWishlists(snapshot.val());
+    //     }
+    //   });
+    // return () => {
+    //   unsubscribe;
+    // };
   });
 
   function renderData() {
