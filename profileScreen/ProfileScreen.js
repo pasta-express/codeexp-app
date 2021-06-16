@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { SafeAreaView, StyleSheet, View } from "react-native";
 import { SignOutButton } from "./SignOutButton";
 import { ProfileHeaderCard } from "./ProfileHeaderCard";
@@ -9,7 +9,7 @@ import { firebaseConfig } from "../config/firebaseConfig";
 //firebase.initializeApp(firebaseConfig);
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
-}else {
+} else {
   firebase.app(); // if already initialized, use that one
 }
 
@@ -38,34 +38,45 @@ const SAMPLE_USER = {
     },
   ],
 };
+const dbSampleUsers = firebase.firestore().collection("sample-users");
+
 const ProfileScreen = (props) => {
-  const [bookedListings, setBookedListings] = useState([])
-  console.log("why")
   useEffect(() => {
-    console.log("hello world")
-    //this could be wonky
-    const unsubscribe = db.onSnapshot((collection) => {
-      const bookedListings = collection.docs.map((doc) => {
+    const unsubscribe = dbSampleUsers.onSnapshot((collection) => {
+      const updatedUsers = collection.docs.map((doc) => {
         return {
           id: doc.id,
-          currentBookings: doc.data().currentBookings
+          ...doc.data(),
         };
       });
-      setBookedListings(bookedListings)
+      console.log(updatedUsers);
     });
-    return (() => {
-      unsubscribe;
-    });
-  }, [])
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+  // supposed to receive User object and Sample Listings from DB
 
-  console.log('hello')
-  console.log(bookedListings)
+  const getCurrentBookingsDetails = () => {
+    const currentBookings = SAMPLE_USER.currentBookings;
+    const currentBookingsIDs = [];
+    for (let i = 0; i < currentBookings.length; i++) {
+      const bookingID = currentBookings[i].id;
+      currentBookingsIDs.push(bookingID);
+    }
+
+    // iterate thru all listings to get listing details
+    const bookingDetails = SAMPLE_LISTINGS.filter((listing) =>
+      currentBookingsIDs.includes(listing.id)
+    );
+    return bookingDetails;
+  };
 
   return (
     <SafeAreaView style={styles.container}>
       <ProfileHeaderCard user={SAMPLE_USER} />
       <ShadowEffectCard>
-        <CurrentBookingsComponent bookings={bookedListings} />
+        <CurrentBookingsComponent />
       </ShadowEffectCard>
       <ShadowEffectCard>
         <SignOutButton />
