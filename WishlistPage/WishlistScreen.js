@@ -4,7 +4,7 @@ import { ListCard } from "../SearchPage/components/ListCard";
 import firebase from "firebase";
 
 import { firebaseConfig } from "../config/firebaseConfig";
-//firebase.initializeApp(firebaseConfig);
+
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 } else {
@@ -12,7 +12,7 @@ if (!firebase.apps.length) {
 }
 
 const dbListings = firebase.firestore().collection("sample-listings");
-const dbWishlists = firebase.firestore().collection("sample-wishlists");
+const dbSampleUsers = firebase.firestore().collection("sample-users");
 
 export const WishlistScreen = ({ navigation }) => {
   const [listings, setListings] = useState([]);
@@ -34,15 +34,15 @@ export const WishlistScreen = ({ navigation }) => {
   }, []);
 
   useEffect(() => {
-    const unsubscribe = dbWishlists.onSnapshot((collection) => {
-      const updatedWishlist = collection.docs.map((doc) => {
+    const unsubscribe = dbSampleUsers.onSnapshot((collection) => {
+      const updatedUsers = collection.docs.map((doc) => {
         return {
           id: doc.id,
           ...doc.data(),
         };
       });
-      setWishlists(updatedWishlist);
 
+      setWishlists(updatedUsers[0].favourites);
     });
     return () => {
       unsubscribe();
@@ -51,7 +51,7 @@ export const WishlistScreen = ({ navigation }) => {
 
   function renderData() {
     return listings.filter((listing) =>
-      wishlists.some((wishlist) => wishlist.id === listing.id)
+      wishlists.some((wishlist) => wishlist === listing.id)
     );
   }
 
