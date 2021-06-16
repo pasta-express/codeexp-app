@@ -172,7 +172,9 @@ const BookingScreen = ({ route, navigation }) => {
           ${numDays * route.params.price}
         </Text>
         <View style={styles.buttonBlock}>
-          <TouchableOpacity style={styles.confirmButton}>
+          <TouchableOpacity style={styles.confirmButton} 
+                            navigation={navigation}
+                            onPress={() => navigation.navigate("Details")}>
             <Text style={styles.buttonText}>Cancel</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.confirmButton}>
