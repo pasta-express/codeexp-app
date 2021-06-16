@@ -14,7 +14,8 @@ if (!firebase.apps.length) {
 }
 
 const currUser = firebase.auth().currentUser;
-
+const dbRef = firebase.database().ref();
+/*
 const SAMPLE_IMAGE_URL =
   "https://locations-api-production.imgix.net/locations/image/35be52d4-1240-11eb-af66-0eb0aa9dee1d/Web_150DPI-20200908_WeWork_9_Battery_Rd_-_Singapore_005.jpg?auto=format%20compress&fit=crop&q=50&w=1800&h=1013";
 
@@ -66,6 +67,7 @@ const SAMPLE_LISTINGS = [
   },
 ];
 
+
 var SAMPLE_USER;
 
 if (currUser) {
@@ -111,14 +113,29 @@ if (currUser) {
 }
 
 const dbSampleUsers = firebase.firestore().collection("sample-users");
-
+*/
 //eventually need to identify the logged in user and only extract info for the logged in user
 
+var bookedListings = []
+var bookedIds = []
 const ProfileScreen = (props) => {
-  const [bookedListings, setBookedListings] = useState([])
-  const [user, setUser] = useState(null)
 
-  useEffect(() => {
+  const db = firebase.firestore()
+  
+  
+    if (currUser) {
+      dbRef.child("users").child(currUser.uid).child('current_bookings').get().then((snapshot) => {
+        if (snapshot.exists()) {
+          console.log(snapshot.val());
+          bookedIds = (snapshot.val());
+        } else {
+          console.log("No data available");
+        }
+      }).catch((error) => {
+        console.error(error);
+      });
+    }
+    /*
     const unsubscribe = dbSampleUsers.onSnapshot((collection) => {
       const userBookings = collection.docs.map((doc) => {
         return {
@@ -134,15 +151,34 @@ const ProfileScreen = (props) => {
       });
       setUser(user);
       setBookedListings(userBookings);
-    });
-    return () => {
-      unsubscribe();
-    };
-  });
+      */
 
+
+  
+  //const [user, setUser] = useState(null)
+
+  for (var i = 0; i < bookedIds.length; i++) {
+    var docRef = db.collection("sample-listings").doc(bookedIds[i]);
+    docRef.get().then((doc) => {
+        if (doc.exists) {
+            console.log("Document data:", doc.data());
+            bookedListings.push(doc.data());
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+        }
+    }).catch((error) => {
+        console.log("Error getting document:", error);
+    });
+  }
+  
+  
+
+  
+  console.log(bookedListings)
   return (
     <SafeAreaView style={styles.container}>
-      <ProfileHeaderCard user={user} />
+      <ProfileHeaderCard user={currUser} />
       <ShadowEffectCard>
         <CurrentBookingsComponent bookings={bookedListings} />
       </ShadowEffectCard>
