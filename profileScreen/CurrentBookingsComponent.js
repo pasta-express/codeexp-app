@@ -12,8 +12,7 @@ if (!firebase.apps.length) {
 
 const db = firebase.firestore().collection("sample-listings")
 
-export const CurrentBookingsComponent = (props) => {
-  const { bookings } = props;
+export const CurrentBookingsComponent = ({ bookings }) => {
   const currentBookingIds = bookings[0].currentBookings
   const [listings, setListings] = useState([])
 
@@ -32,12 +31,19 @@ export const CurrentBookingsComponent = (props) => {
     });
   }, []);
 
-  // listings.filter(listing => {
-  //   currentBookingIds.forEach(id => {
-  //     console.log("hello")
-  //     listing.id !== id
-  //   })
-  // })
+  const getCurrentBookingsDetails = () => {
+    // console.log('help pls')
+    // console.log(currentBookingIds)
+    // iterate thru all listings to get listing details
+    const bookingDetails = listings.filter((listing) =>
+      currentBookingIds.includes(listing.id)
+    );
+    return bookingDetails;
+  };
+
+  const currentBookingsDetails = getCurrentBookingsDetails();
+
+  // console.log(currentBookingsDetails)
 
   function renderItem({ item }) {
     const { id } = item;
@@ -47,7 +53,7 @@ export const CurrentBookingsComponent = (props) => {
   return (
     <View>
       <Text>Current Bookings</Text>
-      <FlatList data={listings} renderItem={renderItem} />
+      <FlatList data={currentBookingsDetails} renderItem={renderItem} />
     </View>
   );
 };
