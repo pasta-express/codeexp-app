@@ -1,23 +1,32 @@
 import * as React from "react";
 
-import { View, Text, StyleSheet, FlatList, SafeAreaView} from "react-native";
+import { View, Text, StyleSheet, FlatList, SafeAreaView, TouchableOpacity} from "react-native";
 
 import { TextInput, List, Colors} from "react-native-paper";
 
-const profile = {"You": Colors.grey500, "Jerry": Colors.blue500}
+import { FontAwesome } from "@expo/vector-icons";
+
+const profile = {
+  "You": Colors.grey500, 
+  "Jerry": Colors.blue500,
+  "Fairy": Colors.green500,
+  "Larry": Colors.purple500,
+  "Harry": Colors.orange500,
+  "Merlin": Colors.red500}
 
 function renderMsg({item}){
   return <MsgBubble user={item.user} text={item.data}/>
 }
 
-const MsgBubble = (props) => {
-  const color = profile[props.user]
+function MsgBubble (props) {
   return (
-    <List.Item
-    title={props.user}
-    description={props.text}
-    left={(props) => <List.Icon color={color} icon="circle" />}
-    />
+      <SafeAreaView style={styles.MsgBox}>
+        <FontAwesome name="circle" color={profile[props.user]} size="25px" style={styles.MsgIcon}/>
+        <SafeAreaView style={styles.MsgView}>
+          <Text style={{fontSize:20, fontWeight:"400"}}>{props.user}</Text>
+          <Text style={{fontSize:18, fontWeight:"300", color:"grey"}}>{props.text}</Text>
+        </SafeAreaView>
+      </SafeAreaView>
   )
 }
 
@@ -40,11 +49,12 @@ export default function ConversationScreen({navigation, route}) {
     setText('');
   }
 
-  function InputBar(){
+  const InputBar = ()=> {
     return( <TextInput style={styles.InputBar}
       placeholder="Send a message"
       value={text}
       onChangeText={setText}
+      onSubmitEditing={SendMessage}
       right={<TextInput.Icon name="send" onPress={SendMessage}/>}
       />
     );
@@ -53,7 +63,7 @@ export default function ConversationScreen({navigation, route}) {
   return (
     <SafeAreaView style={styles.Container}>
       <SafeAreaView style={styles.ListContainer}>
-        <FlatList style={styles.list} data={conversation} renderItem={renderMsg}/>
+        <FlatList contentContainerStyle={{ flexGrow: 1 }} data={conversation} renderItem={renderMsg}/>
       </SafeAreaView>
       <SafeAreaView style={styles.InputContainer}> 
         {InputBar()}
@@ -69,18 +79,35 @@ const styles = StyleSheet.create({
     flex: 1
   },
   
-  listContainer:{
-    flex: 10
+  ListContainer:{
+    backgroundColor: Colors.grey300,
+    flex: 10,
   },
 
   InputContainer: {
-      height: 40,
       margin: 12,
       flex: 1,
   },
+  
+  MsgBox: {
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.grey300,
+    backgroundColor: "white",
+    alignItems: "center",
+    flexDirection: "row",
+    width: "100%",
+    flex: 1,
+  },
+  
+  MsgIcon: {
+    flex:1,
+    paddingLeft: 20,
+  },
 
-  List:{
-    
-  }
 
+  MsgView: {
+    flex:20,
+    height: 100,
+    justifyContent: "center",
+  },
 });

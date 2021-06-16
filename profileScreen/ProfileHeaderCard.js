@@ -13,7 +13,7 @@ const currUser = firebase.auth().currentUser;
 
 export const ProfileHeaderCard = (props) => {
   const { user } = props;
-  // console.log(user)
+  console.log(user)
   return (
     <View style={styles.container}>
       <Image
