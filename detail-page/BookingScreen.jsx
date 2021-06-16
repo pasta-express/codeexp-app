@@ -54,7 +54,7 @@ const BookingScreen = ({ route, navigation }) => {
   );
 
   useEffect(() => {
-    navigation.setOptions({ title: "Name of the location" });
+    navigation.setOptions({ title: route.params.location });
   });
 
   /*
