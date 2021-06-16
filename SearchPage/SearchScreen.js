@@ -7,17 +7,34 @@ import { firebaseConfig } from "../config/firebaseConfig";
 //firebase.initializeApp(firebaseConfig);
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
-}else {
+} else {
   firebase.app(); // if already initialized, use that one
 }
 
-const db = firebase.firestore().collection("sample-listings")
-  
+const db = firebase.firestore().collection("sample-listings");
+const dbWishlists = firebase.firestore().collection("sample-wishlists");
+
 const SAMPLE_WISHLIST = [{ id: "0" }, { id: "2" }, { id: "4" }];
 
 export const SearchScreen = (props) => {
   const [searchInput, setSearchInput] = useState("");
   const [listings, setListings] = useState([]);
+  const [wishlists, setWishlists] = useState([]);
+
+  useEffect(() => {
+    const unsubscribe = dbWishlists.onSnapshot((collection) => {
+      const updatedWishlist = collection.docs.map((doc) => {
+        return {
+          id: doc.id,
+          ...doc.data(),
+        };
+      });
+      setWishlists(updatedWishlist);
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   useEffect(() => {
     const unsubscribe = db.onSnapshot((collection) => {
@@ -29,12 +46,10 @@ export const SearchScreen = (props) => {
       });
       setListings(updatedListings);
     });
-    return (() => {
+    return () => {
       unsubscribe();
-    });
-  }, [])
-
-
+    };
+  }, []);
 
   const onChangeText = (searchInput) => {
     setSearchInput(searchInput);
@@ -51,11 +66,18 @@ export const SearchScreen = (props) => {
   function renderItem({ item }) {
     const { id } = item;
     // Checks if user has wishlisted listing
-    const isListingWishlisted = SAMPLE_WISHLIST.some(
+    const isListingWishlisted = wishlists.some(
       (wishlist) => wishlist.id === id
     );
 
-    return <ListCard key={id} isListingWishlisted={isListingWishlisted} {...item} navigation={props.navigation} />;
+    return (
+      <ListCard
+        key={id}
+        isListingWishlisted={isListingWishlisted}
+        {...item}
+        navigation={props.navigation}
+      />
+    );
   }
 
   return (
@@ -80,8 +102,8 @@ const styles = StyleSheet.create({
   searchInput: {
     borderRadius: 25,
     margin: 15,
-    paddingLeft: 10
+    paddingLeft: 10,
   },
 });
 
-export default SearchScreen
+export default SearchScreen;
