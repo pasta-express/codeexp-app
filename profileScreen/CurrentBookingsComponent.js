@@ -12,6 +12,7 @@ if (!firebase.apps.length) {
 
 const currUser = firebase.auth().currentUser;
 const db = firebase.firestore().collection("sample-listings")
+const dbRef = firebase.database().ref();
 
 export const CurrentBookingsComponent = ({ bookings }) => {
 

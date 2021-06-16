@@ -22,7 +22,7 @@ export const ProfileHeaderCard = (props) => {
           uri: user.photoURL,
         }}
       />
-      <Text style={styles.text}>{user[0].name}</Text>
+      <Text style={styles.text}>{user.displayName}</Text>
     </View>
   );
 };
