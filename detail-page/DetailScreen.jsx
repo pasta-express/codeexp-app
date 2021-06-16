@@ -143,7 +143,7 @@ const DetailScreen = ({route, navigation}) => {
           extended
           label="message host"
           style={styles.FAB}
-          onPress={() => console.log("hello")}
+          onPress={() => navigation.navigate("Message")}
         />
         <FAB 
           extended label="book now" 

@@ -3,13 +3,12 @@ import { View, StyleSheet, Text, Image } from "react-native";
 
 export const CurrentBookingCard = (props) => {
   const { bookingDetails } = props;
-
   return (
     <View style={styles.container}>
       <Image
         style={styles.image}
         source={{
-          uri: bookingDetails.coverImage,
+          uri: bookingDetails.coverImage[0],
         }}
       />
       <Text>{bookingDetails.companyName}</Text>

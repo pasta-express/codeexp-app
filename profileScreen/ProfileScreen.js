@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView, StyleSheet, View } from "react-native";
 import { SignOutButton } from "./SignOutButton";
 import { ProfileHeaderCard } from "./ProfileHeaderCard";
@@ -112,45 +112,43 @@ if (currUser) {
 
 const dbSampleUsers = firebase.firestore().collection("sample-users");
 
+//eventually need to identify the logged in user and only extract info for the logged in user
+
 const ProfileScreen = (props) => {
+  const [bookedListings, setBookedListings] = useState([])
+  const [user, setUser] = useState(null)
+
   useEffect(() => {
     const unsubscribe = dbSampleUsers.onSnapshot((collection) => {
-      const updatedUsers = collection.docs.map((doc) => {
+      const userBookings = collection.docs.map((doc) => {
         return {
           id: doc.id,
-          ...doc.data(),
+          currentBookings: doc.data().currentBookings
         };
       });
-      console.log(updatedUsers);
+      const user = collection.docs.map((doc) => {
+        return {
+          id: doc.id,
+          ...doc.data()
+        }
+      });
+      setUser(user);
+      setBookedListings(userBookings);
     });
     return () => {
       unsubscribe();
     };
-  }, []);
-  // supposed to receive User object and Sample Listings from DB
+  });
 
-  const getCurrentBookingsDetails = () => {
-    const currentBookings = SAMPLE_USER.currentBookings;
-    const currentBookingsIDs = [];
-    for (let i = 0; i < currentBookings.length; i++) {
-      const bookingID = currentBookings[i].id;
-      currentBookingsIDs.push(bookingID);
-    }
-
-    // iterate thru all listings to get listing details
-    const bookingDetails = SAMPLE_LISTINGS.filter((listing) =>
-      currentBookingsIDs.includes(listing.id)
-    );
-    return bookingDetails;
-  };
-
-  const currentBookingsDetails = getCurrentBookingsDetails();
-
+  console.log("pls la")
+  console.log('lol')
+  console.log(user)
+  // console.log(bookedListings)
   return (
     <SafeAreaView style={styles.container}>
-      <ProfileHeaderCard user={SAMPLE_USER} />
+      <ProfileHeaderCard user={user} />
       <ShadowEffectCard>
-        <CurrentBookingsComponent bookings={currentBookingsDetails} />
+        <CurrentBookingsComponent bookings={bookedListings} />
       </ShadowEffectCard>
       <ShadowEffectCard>
         <SignOutButton />

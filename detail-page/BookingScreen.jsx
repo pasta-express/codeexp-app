@@ -8,13 +8,10 @@ import {
   Image,
   Dimensions,
   ScrollView,
+  Alert
 } from "react-native";
 import { DatePickerModal } from "react-native-paper-dates";
 import moment from "moment";
-
-import { Card, Button } from "react-native-paper";
-
-const NORMAL_WIDTH = Dimensions.get("window").width;
 
 const BookingScreen = ({ route, navigation }) => {
   const [range, setRange] = useState({
@@ -106,7 +103,25 @@ const BookingScreen = ({ route, navigation }) => {
                             onPress={() => navigation.navigate("Details")}>
             <Text style={styles.buttonText}>Cancel</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.confirmButton}>
+          <TouchableOpacity 
+            style={styles.confirmButton}
+            onPress={() => {
+              if (!range.startDate || !range.endDate) {
+                Alert.alert("You have not chosen your dates!")
+              } else {
+                Alert.alert("Confirm booking?", "Payment will be processed upon confirmation",[
+                  {
+                    text: 'Cancel',
+                    onPress: () => navigation.navigate("Booking")
+                  },
+                  {
+                    text: 'Confirm',
+                    onPress: () => navigation.navigate("Profile")
+                  }
+                ])
+              }  
+            }}
+            >
             <Text style={styles.buttonText}>Confirm</Text>
           </TouchableOpacity>
         </View>
@@ -115,7 +130,7 @@ const BookingScreen = ({ route, navigation }) => {
 
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
 
