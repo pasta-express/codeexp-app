@@ -9,7 +9,7 @@
 
 ### Problems addressed:
 
-* Businesses can convert excess unused space into extra income.
+* With remote working increasingly becoming the norm, businesses can convert excess unused space into extra income.
 * Workers previously priced out of a co-working space are able to choose where they want to work from. 
 * **Goal** To efficiently manage the demand and supply of working spaces 
 
