@@ -39,7 +39,8 @@ const dbSampleUsers = firebase.firestore().collection("sample-users");
 
 const ProfileScreen = (props) => {
   const [bookedListings, setBookedListings] = useState([])
-  
+  const [user, setUser] = useState(null)
+
   useEffect(() => {
     const unsubscribe = dbSampleUsers.onSnapshot((collection) => {
       const userBookings = collection.docs.map((doc) => {
@@ -48,17 +49,27 @@ const ProfileScreen = (props) => {
           currentBookings: doc.data().currentBookings
         };
       });
+      const user = collection.docs.map((doc) => {
+        return {
+          id: doc.id,
+          ...doc.data()
+        }
+      });
+      setUser(user);
       setBookedListings(userBookings);
     });
     return () => {
       unsubscribe();
     };
-  }, []);
+  });
 
+  console.log("pls la")
+  console.log('lol')
+  console.log(user)
   // console.log(bookedListings)
   return (
     <SafeAreaView style={styles.container}>
-      <ProfileHeaderCard user={SAMPLE_USER} />
+      <ProfileHeaderCard user={user} />
       <ShadowEffectCard>
         <CurrentBookingsComponent bookings={bookedListings} />
       </ShadowEffectCard>
