@@ -9,7 +9,6 @@ const InnerStack = createStackNavigator();
 //to add for profile and inbox
 
 const SearchStack = () => {
-  //add back the safe area view here
   return (
     <InnerStack.Navigator>
       <InnerStack.Screen
