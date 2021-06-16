@@ -1,10 +1,12 @@
 import * as React from "react";
 
-import { View, Text, StyleSheet, FlatList, SafeAreaView, TouchableOpacity} from "react-native";
+import { Text, StyleSheet, FlatList, SafeAreaView, TouchableOpacity} from "react-native";
 
-import { TextInput, List, Colors} from "react-native-paper";
+import { TextInput, Colors} from "react-native-paper";
 
 import { FontAwesome } from "@expo/vector-icons";
+
+import moment from "moment";
 
 const profile = {
   "You": Colors.grey500, 
@@ -15,16 +17,27 @@ const profile = {
   "Merlin": Colors.red500}
 
 function renderMsg({item}){
-  return <MsgBubble user={item.user} text={item.data}/>
+  return <MsgItem user={item.user} text={item.data}/>
 }
 
-function MsgBubble (props) {
+function MsgItem (props) {
   return (
       <SafeAreaView style={styles.MsgBox}>
-        <FontAwesome name="circle" color={profile[props.user]} size="25px" style={styles.MsgIcon}/>
-        <SafeAreaView style={styles.MsgView}>
-          <Text style={{fontSize:20, fontWeight:"400"}}>{props.user}</Text>
-          <Text style={{fontSize:18, fontWeight:"300", color:"grey"}}>{props.text}</Text>
+        <SafeAreaView style ={{flex:1, alignItems:"center"}}>
+          <FontAwesome name = "circle" color={profile[props.user]} size={25} style={styles.MsgIcon}/>
+        </SafeAreaView>
+        <SafeAreaView style={{flex:10}}>
+          <SafeAreaView style={styles.MsgView}>
+            <Text style={{fontSize:20, fontWeight:"400"}}>{props.user}</Text>
+            <SafeAreaView style={{flex:1, flexDirection:"row"}}>
+              <SafeAreaView style={{flex:4}}>
+                <Text style={{fontSize:18, fontWeight:"300", color:"grey"}}>{props.text}</Text>
+              </SafeAreaView>
+              <SafeAreaView style={{flex:1, paddingRight:20}}>
+                <Text style={{fontSize:15, fontWeight:"200", color:"grey", alignSelf:"flex-end"}}>{moment().format('LT')}</Text>
+              </SafeAreaView>
+            </SafeAreaView>
+          </SafeAreaView>
         </SafeAreaView>
       </SafeAreaView>
   )
@@ -36,6 +49,9 @@ export default function ConversationScreen({navigation, route}) {
   const SAMPLE_CONVERSATION=[
     {id:"0", user:"You", data:"Hello!"},
     {id:"1", user:contact, data:"Hi! do you have any queries?"},
+    {id:"2", user:"You", data:"Yes, I'd like ask if the venue's workstations have a LAN Ports?"},
+    {id:"3", user:contact, data:"Yup, do they have!"},
+    {id:"4", user:"You", data:"oooh okay, thanks!"},
     ]
 
   const [conversation, setConversation] = React.useState(SAMPLE_CONVERSATION)
@@ -100,14 +116,13 @@ const styles = StyleSheet.create({
   },
   
   MsgIcon: {
-    flex:1,
-    paddingLeft: 20,
+    justifyContent:"center",
   },
-
 
   MsgView: {
-    flex:20,
-    height: 100,
-    justifyContent: "center",
-  },
+    marginTop:20, 
+    marginBottom:20,
+    paddingLeft:20,
+    justifyContent:"center",
+  }
 });
