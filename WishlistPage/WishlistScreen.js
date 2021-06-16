@@ -41,13 +41,6 @@ export const WishlistScreen = ({ navigation }) => {
           ...doc.data(),
         };
       });
-
-      // setListings((listings) =>
-      //   listings.filter((listing) =>
-      //     updatedWishlist.some((wishlist) => wishlist.id === listing.id)
-      //   )
-      // );
-
       setWishlists(updatedWishlist);
 
     });
