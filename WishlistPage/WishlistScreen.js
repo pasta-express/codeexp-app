@@ -1,72 +1,71 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { SafeAreaView, StyleSheet, FlatList } from "react-native";
 import { ListCard } from "../SearchPage/components/ListCard";
+import firebase from "firebase";
 
-const SAMPLE_IMAGE_URL =
-  "https://locations-api-production.imgix.net/locations/image/35be52d4-1240-11eb-af66-0eb0aa9dee1d/Web_150DPI-20200908_WeWork_9_Battery_Rd_-_Singapore_005.jpg?auto=format%20compress&fit=crop&q=50&w=1800&h=1013";
+import { firebaseConfig } from "../config/firebaseConfig";
+//firebase.initializeApp(firebaseConfig);
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+} else {
+  firebase.app(); // if already initialized, use that one
+}
 
-const SAMPLE_LISTINGS = [
-  {
-    id: "0",
-    companyName: "Company1",
-    coverImage: SAMPLE_IMAGE_URL,
-    price: 30,
-    location: "Singapore",
-    startDate: Date.now(),
-    endDate: Date.now(),
-  },
-  {
-    id: "1",
-    companyName: "Company2",
-    coverImage: SAMPLE_IMAGE_URL,
-    price: 40,
-    location: "Singapore",
-    startDate: Date.now(),
-    endDate: Date.now(),
-  },
-  {
-    id: "2",
-    companyName: "Company3",
-    coverImage: SAMPLE_IMAGE_URL,
-    price: 20,
-    location: "Singapore",
-    startDate: Date.now(),
-    endDate: Date.now(),
-  },
-  {
-    id: "3",
-    companyName: "Company4",
-    coverImage: SAMPLE_IMAGE_URL,
-    price: 20,
-    location: "Singapore",
-    startDate: Date.now(),
-    endDate: Date.now(),
-  },
-  {
-    id: "4",
-    companyName: "Company5",
-    coverImage: SAMPLE_IMAGE_URL,
-    price: 10,
-    location: "Singapore",
-    startDate: Date.now(),
-    endDate: Date.now(),
-  },
-  {
-    id: "5",
-    companyName: "Company6",
-    coverImage: SAMPLE_IMAGE_URL,
-    price: 30,
-    location: "Singapore",
-    startDate: Date.now(),
-    endDate: Date.now(),
-  },
-];
+const dbListings = firebase.firestore().collection("sample-listings");
+const dbWishlists = firebase.firestore().collection("sample-wishlists");
 
 export const WishlistScreen = ({ navigation }) => {
+  const [listings, setListings] = useState([]);
+  const [wishlists, setWishlists] = useState([]);
+
+  useEffect(() => {
+    const unsubscribe = dbListings.onSnapshot((collection) => {
+      const updatedListings = collection.docs.map((doc) => {
+        return {
+          id: doc.id,
+          ...doc.data(),
+        };
+      });
+      setListings(updatedListings);
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  useEffect(() => {
+    const unsubscribe = dbWishlists.onSnapshot((collection) => {
+      const updatedWishlist = collection.docs.map((doc) => {
+        return {
+          id: doc.id,
+          ...doc.data(),
+        };
+      });
+
+      // setListings((listings) =>
+      //   listings.filter((listing) =>
+      //     updatedWishlist.some((wishlist) => wishlist.id === listing.id)
+      //   )
+      // );
+
+      setWishlists(updatedWishlist);
+
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  function renderData() {
+    return listings.filter((listing) =>
+      wishlists.some((wishlist) => wishlist.id === listing.id)
+    );
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
-        data={SAMPLE_LISTINGS}
+        data={renderData()}
         renderItem={({ item }) => {
           const { id } = item;
           return (
