@@ -5,7 +5,6 @@ import firebase from "firebase";
 
 export const FavouriteButton = ({ id, isFavourite = false }) => {
   const [favourite, setFavourite] = useState(isFavourite);
-  console.log(id);
 
   const handlePress = () => {
     setFavourite((favourite) => !favourite);
