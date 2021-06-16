@@ -8,6 +8,7 @@ import {
   Image,
   Dimensions,
   ScrollView,
+  Alert
 } from "react-native";
 import { DatePickerModal } from "react-native-paper-dates";
 import moment from "moment";
@@ -57,7 +58,7 @@ const BookingScreen = ({ route, navigation }) => {
     navigation.setOptions({ title: route.params.location });
   });
 
-  const ButtonRow = () => {
+  const ButtonRow = ({ navigation }) => {
     return (
       <View style={styles.buttonRow}>
         <Button
@@ -70,8 +71,23 @@ const BookingScreen = ({ route, navigation }) => {
         <Button
           mode="contained"
           style={styles.confirmButtion}
+          onPress={() => {
+            if (!range.startDate || !range.endDate) {
+              Alert.alert("You have not chosen your dates!")
+            } else {
+              Alert.alert("Confirm booking?", "Payment will be processed upon confirmation",[
+                {
+                  text: 'Cancel',
+                  onPress: () => navigation.navigate("Booking")
+                },
+                {
+                  text: 'Confirm',
+                  onPress: () => navigation.navigate("Profile")
+                }
+              ])
+            }
+          }}
         >
-          {/*on confirm will take the user to the myprofile screen, and the info of the booking will be made there. We ignore payment methods for now*/}
           Confirm
         </Button>
       </View>
