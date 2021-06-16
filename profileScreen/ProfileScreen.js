@@ -140,10 +140,6 @@ const ProfileScreen = (props) => {
     };
   });
 
-  console.log("pls la")
-  console.log('lol')
-  console.log(user)
-  // console.log(bookedListings)
   return (
     <SafeAreaView style={styles.container}>
       <ProfileHeaderCard user={user} />
