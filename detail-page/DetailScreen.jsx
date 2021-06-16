@@ -147,7 +147,12 @@ const DetailScreen = ({ navigation }) => {
           <FeatureCard />
         </ScrollView>
       </View>
-      <View style={{ flexDirection: "row", marginLeft: "20%" }}>
+      <View style={{ width: "100%",
+                      flexDirection: "row", 
+                      display: "flex", 
+                      justifyContent: "space-between",
+                      borderTopColor: "grey",
+                      borderTopWidth: 1}}>
         <FAB
           extended
           label="message host"
@@ -171,21 +176,20 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: "#9fa3cc",
+    backgroundColor: "white",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "flex-start",
   },
   scrollView: {
     flex: 2,
-    margin: 5,
   },
   box: {
     backgroundColor: "white",
     width: "100%",
     paddingHorizontal: 8,
-    borderRadius: 20,
-    borderWidth: 1,
+    borderRadius: 0,
+    borderWidth: 0,
     borderColor: "black",
     flexWrap: "wrap",
     justifyContent: "center",
@@ -196,8 +200,8 @@ const styles = StyleSheet.create({
   descTitle: {
     fontSize: 20,
     fontWeight: "bold",
-    borderRadius: 20,
-    padding: 5,
+    paddingTop: 15,
+    paddingLeft: 8
   },
   carousel: {
     flex: 1,
@@ -208,7 +212,8 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   FAB: {
-    backgroundColor: "#6200ee",
+    backgroundColor: "black",
+    margin: 8,
   },
 });
 

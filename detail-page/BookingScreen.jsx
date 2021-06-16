@@ -48,17 +48,13 @@ const BookingScreen = ({ navigation }) => {
       <View style={styles.buttonRow}>
         <Button
           mode="contained"
-          labelStyle={{ color: "black" }}
-          style={{ height: "50%", justifyContent: "center" }}
-          contentStyle={styles.cancelButton}
+          style={styles.cancelButton}
         >
           Cancel
         </Button>
         <Button
           mode="contained"
-          labelStyle={{ color: "black" }}
-          style={{ height: "50%", justifyContent: "center" }}
-          contentStyle={styles.confirmButtion}
+          style={styles.confirmButtion}
         >
           {/*on confirm will take the user to the myprofile screen, and the info of the booking will be made there. We ignore payment methods for now*/}
           Confirm
@@ -121,24 +117,24 @@ const styles = StyleSheet.create({
     backgroundColor: "#9fa3cc",
     flexDirection: "column",
     alignItems: "center",
-    justifyContent: "flex-start",
-    width: NORMAL_WIDTH,
+    justifyContent: "center",
+    width: "100%",
   },
   box: {
     backgroundColor: "white",
     width: "95%",
-    paddingHorizontal: 8,
-    marginTop: "50%",
+    height: "50%",
+    paddingHorizontal: 10,
     borderRadius: 20,
-    borderWidth: 1,
-    flex: 0.6,
-    borderColor: "black",
+    borderWidth: 2,
+    borderColor: "grey",
     flexWrap: "wrap",
     justifyContent: "center",
     flexDirection: "row",
   },
   dateButton: {
-    flex: 0.5,
+    width: "100%",
+    height: 60,
     marginTop: 20,
     justifyContent: "center",
   },
@@ -150,24 +146,34 @@ const styles = StyleSheet.create({
     fontSize: 24,
     padding: 10,
   },
+
+  datesRow: {
+    marginTop: 10,
+  },
+  
   buttonRow: {
     flex: 1,
-    justifyContent: "flex-end",
+    justifyContent: "space-between",
     flexDirection: "row",
-    alignItems: "flex-end",
-    height: 1,
+    alignItems: "center",
+    height: "10%",
+
   },
   cancelButton: {
-    flexDirection: "row-reverse",
-    justifyContent: "flex-end",
-    backgroundColor: "#c4c4c4",
-    height: "100%",
+    color: "white",
+    backgroundColor: "black",
+    height: "45%",
+    borderRadius: 20,
+    width: "35%"
   },
   confirmButtion: {
-    flexDirection: "row-reverse",
-    justifyContent: "flex-end",
-    height: "100%",
-    borderWidth: 2,
+    height: "45%",
+    backgroundColor: "black",
+    color: "white",
+    borderRadius: 20,
+    textAlign: "center",
+    width: "35%",
+    
   },
 });
 
