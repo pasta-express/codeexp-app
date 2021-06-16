@@ -3,16 +3,16 @@ import { View, StyleSheet, Text, Image } from "react-native";
 
 export const ProfileHeaderCard = (props) => {
   const { user } = props;
-  // console.log(user)
+  console.log(user)
   return (
     <View style={styles.container}>
-      <Image
+      {/* <Image
         style={styles.image}
         source={{
           uri: user[0].profileImage,
         }}
-      />
-      <Text style={styles.text}>{user[0].name}</Text>
+      /> */}
+      {/* <Text style={styles.text}>{user[0].name}</Text> */}
     </View>
   );
 };
