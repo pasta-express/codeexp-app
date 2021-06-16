@@ -1,4 +1,5 @@
 import "react-native-gesture-handler";
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
@@ -6,10 +7,23 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Feather, Ionicons, FontAwesome } from "@expo/vector-icons";
-import { ProfileStack } from './profileScreen/ProfileStack';
+import { ProfileStack } from "./profileScreen/ProfileStackScreen";
+import { WishlistStack } from "./WishlistPage/WishlistStack";
 import SearchScreen from "./SearchPage/SearchScreen";
 import SearchStack from './SearchPage/SearchStack';
-import { WishlistScreen } from "./WishlistPage/WishlistScreen";
+import InboxScreen from "./InboxPage/Inbox";
+import Login from "./Login";
+import Signup from "./Signup";
+import LoginStack from "./LoginStack";
+
+import firebase from "firebase";
+import { firebaseConfig } from "./config/firebaseConfig";
+//firebase.initializeApp(firebaseConfig);
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}else {
+  firebase.app(); // if already initialized, use that one
+}
 
 function ExploreStackScreen() {
   return (
@@ -20,15 +34,15 @@ function ExploreStackScreen() {
 }
 
 function WishlistStackScreen() {
-  return <WishlistScreen />;
+  return <WishlistStack />;
 }
 
 function InboxStackScreen() {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Inbox Screen</Text>
-    </View>
-  );
+  return <InboxScreen />
+}
+
+function loginScreen() {
+  return <Login />
 }
 
 export default function App() {
@@ -71,7 +85,9 @@ export default function App() {
         <Tab.Screen name="Explore" component={SearchStack} />
         <Tab.Screen name="Wishlist" component={WishlistStackScreen} />
         <Tab.Screen name="Inbox" component={InboxStackScreen} />
-        <Tab.Screen name="Profile" component={ProfileStack} />
+        <Tab.Screen name="Profile" component={LoginStack} />
+        // TODO: integrate with LoginStack
+        <Tab.Screen name="ProfileScreen" component={ProfileStack} />
       </Tab.Navigator>
     </NavigationContainer>
   );
