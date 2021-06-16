@@ -39,28 +39,16 @@ function renderContact({item}){
   return <ContactItem name={item.name} color={item.color}/>
 }
 
-// function ContactItem (props) {
-//   const navigation = useNavigation();
-//   return (
-//       <List.Item
-//       title={props.name}
-//       left={() => <List.Icon color={props.color} icon="circle" />}
-//       onPress= {()=>navigation.navigate({
-//         name: "Conversation", 
-//         params: {contact: props.name}})}
-//       />
-//   )
-// }
-
 function ContactItem (props) {
   const navigation = useNavigation();
   return (
       <SafeAreaView style={styles.ContactBox}>
-        <FontAwesome name="circle" color="red" style={styles.ContactIcon}/>
+        <FontAwesome name="circle" color={props.color} size="30px" style={styles.ContactIcon}/>
         <TouchableOpacity onPress= {()=>navigation.navigate({
           name: "Conversation", params: {contact: props.name}})} 
           style={styles.ContactTouchable}>
-          <Text style={{fontSize: 30, fontWeight: "200"}}>{props.name}</Text>
+          <Text style={{fontSize:28, fontWeight:"400"}}>{props.name}</Text>
+          <Text style={{fontSize:18, fontWeight:"200", color:"grey"}}>Hi! Do you have any queries?</Text>
         </TouchableOpacity>
       </SafeAreaView>
   )
@@ -77,12 +65,14 @@ export default function InboxStack() {
 
 const styles = StyleSheet.create({
   Container: {
+    backgroundColor: Colors.grey300,
     flex:1,
   },
 
   ContactBox: {
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.grey300,
     backgroundColor: "white",
-    borderBottomColor: "black",
     alignItems: "center",
     flexDirection: "row",
     width: "100%",
@@ -93,31 +83,10 @@ const styles = StyleSheet.create({
     flex:20,
     height: 100,
     justifyContent: "center",
-    fontSize: 100,
-    fontWeight: "bold",
   },
 
   ContactIcon: {
-    paddingLeft: 10,
-    flex:1
+    paddingLeft: 20,
+    flex:1,
   }
 });
-
-  
-
-// function InboxScreen({ navigation }) {
-//   return (
-//     <List.Section>
-//         <List.Item
-//         title="Jerry"
-//         left={(props) => <List.Icon color={Colors.red500} icon="circle" />}
-//         onPress= {()=>navigation.navigate("Conversation")}
-//         />
-//         <List.Item
-//         title="Fairy"
-//         left={(props) => <List.Icon {...props} icon="circle" />}
-//         onPress= {()=>navigation.navigate("Conversation")}
-//         />
-//     </List.Section>
-//   );
-// }
