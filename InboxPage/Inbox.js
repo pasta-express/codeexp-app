@@ -44,20 +44,24 @@ function ContactItem (props) {
   const navigation = useNavigation();
   return (
       <SafeAreaView style={styles.ContactBox}>
-        <FontAwesome name="circle" color={props.color} size={30} style={styles.ContactIcon}/>
-        <TouchableOpacity onPress= {()=>navigation.navigate({
-          name: "Conversation", params: {contact: props.name}})} 
-          style={styles.ContactTouchable}>
-          <Text style={{fontSize:28, fontWeight:"400"}}>{props.name}</Text>
-          <SafeAreaView style={{flexDirection: "row"}}>
-            <SafeAreaView style={{flex: 1}}>
-              <Text style={{fontSize:18, fontWeight:"200", color:"grey"}}>oooh okay, thanks!</Text>
+        <SafeAreaView style = {{flex:1, alignItems: "center"}}>
+          <FontAwesome name="circle" color={props.color} size={30} style={styles.ContactIcon}/>
+        </SafeAreaView>
+        <SafeAreaView style={{flex:10}}>
+          <TouchableOpacity onPress= {()=>navigation.navigate({
+            name: "Conversation", params: {contact: props.name}})} 
+            style={styles.ContactTouchable}>
+            <Text style={{fontSize:28, fontWeight:"400"}}>{props.name}</Text>
+            <SafeAreaView style={{flexDirection: "row"}}>
+              <SafeAreaView style={{flex: 1}}>
+                <Text style={{fontSize:18, fontWeight:"200", color:"grey"}}>oooh okay, thanks!</Text>
+              </SafeAreaView>
+              <SafeAreaView style={{flex: 1, paddingRight:20}}>
+                <Text style={{fontSize:18, fontWeight:"200", color:"grey", alignSelf:"flex-end"}}>{moment().format('LT')}</Text>
+              </SafeAreaView>
             </SafeAreaView>
-            <SafeAreaView style={{flex: 1, paddingRight:20}}>
-              <Text style={{fontSize:18, fontWeight:"200", color:"grey", alignSelf:"flex-end"}}>{moment().format('LT')}</Text>
-            </SafeAreaView>
-          </SafeAreaView>
-        </TouchableOpacity>
+          </TouchableOpacity>
+        </SafeAreaView>
       </SafeAreaView>
   )
 }
@@ -88,15 +92,13 @@ const styles = StyleSheet.create({
   },
 
   ContactTouchable: {
-    flex:20,
     marginTop:20,
     marginBottom:20,
+    paddingLeft: 20,
     justifyContent: "center",
-    alignContent: "stretch"
   },
 
   ContactIcon: {
-    paddingLeft: 20,
-    flex:1,
+    justifyContent: "center",
   }
 });

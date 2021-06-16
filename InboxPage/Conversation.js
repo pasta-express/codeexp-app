@@ -23,15 +23,19 @@ function renderMsg({item}){
 function MsgItem (props) {
   return (
       <SafeAreaView style={styles.MsgBox}>
-        <FontAwesome name="circle" color={profile[props.user]} size="25px" style={styles.MsgIcon}/>
-        <SafeAreaView style={styles.MsgView}>
-          <Text style={{fontSize:20, fontWeight:"400"}}>{props.user}</Text>
-          <SafeAreaView style={{flex:1, flexDirection:"row"}}>
-            <SafeAreaView style={{flex:1}}>
-              <Text style={{fontSize:18, fontWeight:"300", color:"grey"}}>{props.text}</Text>
-            </SafeAreaView>
-            <SafeAreaView style={{flex:1, paddingRight:20}}>
-              <Text style={{fontSize:18, fontWeight:"200", color:"grey", alignSelf:"flex-end"}}>{moment().format('LT')}</Text>
+        <SafeAreaView style ={{flex:1, alignItems:"center"}}>
+          <FontAwesome name = "circle" color={profile[props.user]} size={25} style={styles.MsgIcon}/>
+        </SafeAreaView>
+        <SafeAreaView style={{flex:10}}>
+          <SafeAreaView style={styles.MsgView}>
+            <Text style={{fontSize:20, fontWeight:"400"}}>{props.user}</Text>
+            <SafeAreaView style={{flex:1, flexDirection:"row"}}>
+              <SafeAreaView style={{flex:4}}>
+                <Text style={{fontSize:18, fontWeight:"300", color:"grey"}}>{props.text}</Text>
+              </SafeAreaView>
+              <SafeAreaView style={{flex:1, paddingRight:20}}>
+                <Text style={{fontSize:15, fontWeight:"200", color:"grey", alignSelf:"flex-end"}}>{moment().format('LT')}</Text>
+              </SafeAreaView>
             </SafeAreaView>
           </SafeAreaView>
         </SafeAreaView>
@@ -112,15 +116,13 @@ const styles = StyleSheet.create({
   },
   
   MsgIcon: {
-    flex:1,
-    paddingLeft: 20,
+    justifyContent:"center",
   },
-
 
   MsgView: {
-    flex:20,
-    marginTop:20,
+    marginTop:20, 
     marginBottom:20,
-    justifyContent: "center",
-  },
+    paddingLeft:20,
+    justifyContent:"center",
+  }
 });
