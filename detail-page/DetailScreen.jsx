@@ -154,7 +154,7 @@ const DetailScreen = ({ navigation }) => {
           style={styles.FAB}
           onPress={() => console.log("hello")}
         />
-        <FAB extended label="book now" style={styles.FAB} />
+        <FAB extended label="book now" style={styles.FAB} onPress={() => navigation.navigate("Booking")} />
       </View>
     </View>
   );
