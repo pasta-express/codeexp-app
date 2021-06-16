@@ -1,9 +1,10 @@
 import * as React from "react";
-import { Text, View, StyleSheet, SafeAreaView, FlatList, ScrollView} from "react-native";
+import { Text, View, StyleSheet, SafeAreaView, FlatList, TouchableOpacity} from "react-native";
 import { List, Colors } from "react-native-paper";
 import { createStackNavigator } from "@react-navigation/stack";
 import ConversationScreen from "./Conversation";
 import { useNavigation } from "@react-navigation/native";
+import { FontAwesome } from "@expo/vector-icons";
 
 const Stack = createStackNavigator();
 
@@ -27,7 +28,7 @@ const contacts = [
 
 function InboxScreen({ navigation }) {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.Container}>
         <FlatList style={styles.list} data={contacts} renderItem={renderContact} nestedScrollEnabled/>
     </SafeAreaView>
   );
@@ -38,17 +39,30 @@ function renderContact({item}){
   return <ContactItem name={item.name} color={item.color}/>
 }
 
+// function ContactItem (props) {
+//   const navigation = useNavigation();
+//   return (
+//       <List.Item
+//       title={props.name}
+//       left={() => <List.Icon color={props.color} icon="circle" />}
+//       onPress= {()=>navigation.navigate({
+//         name: "Conversation", 
+//         params: {contact: props.name}})}
+//       />
+//   )
+// }
+
 function ContactItem (props) {
   const navigation = useNavigation();
-  const color = props.color
   return (
-      <List.Item
-      title={props.name}
-      left={() => <List.Icon color={props.color} icon="circle" />}
-      onPress= {()=>navigation.navigate({
-        name: "Conversation", 
-        params: {contact: props.name}})}
-      />
+      <SafeAreaView style={styles.ContactBox}>
+        <FontAwesome name="circle" color="red" style={styles.ContactIcon}/>
+        <TouchableOpacity onPress= {()=>navigation.navigate({
+          name: "Conversation", params: {contact: props.name}})} 
+          style={styles.ContactTouchable}>
+          <Text style={{fontSize: "30%", fontWeight: "200"}}>{props.name}</Text>
+        </TouchableOpacity>
+      </SafeAreaView>
   )
 }
 
@@ -62,15 +76,31 @@ export default function InboxStack() {
 }
 
 const styles = StyleSheet.create({
-  button: {
+  Container: {
+    flex:1,
+  },
+
+  ContactBox: {
     backgroundColor: "white",
     borderBottomColor: "black",
-    //alignText:'left',
-    height: 60,
-    fontSize: 40,
-    fontWeight: "bold",
+    alignItems: "center",
+    flexDirection: "row",
     width: "100%",
+    flex: 1,
   },
+
+  ContactTouchable: {
+    flex:20,
+    height: 100,
+    justifyContent: "center",
+    fontSize: 100,
+    fontWeight: "bold",
+  },
+
+  ContactIcon: {
+    paddingLeft: 10,
+    flex:1
+  }
 });
 
   
