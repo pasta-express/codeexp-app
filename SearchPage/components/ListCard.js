@@ -1,13 +1,13 @@
 import React from "react";
 import { View, StyleSheet, Text, Image, TouchableOpacity } from "react-native";
 import { ListCardInfo } from "./ListCardInfo";
-import moment from "moment";
+//import moment from "moment";
 import { useNavigation } from "@react-navigation/native";
-
+/*
 const formatDate = (date) => {
   return moment(date).format("Do MMM YY");
 };
-
+*/
 export const ListCard = (props) => {
   const { coverImage, navigation, route } = props;
 

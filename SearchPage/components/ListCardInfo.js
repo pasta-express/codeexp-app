@@ -1,11 +1,13 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
-import moment from "moment";
+//import moment from "moment";
 import { FavouriteButton } from "./FavouriteButton";
 
+
 const formatDate = (date) => {
-  return moment(date).format("Do MMM YY");
+  //return moment(date).format("Do MMM YY");
 };
+
 
 export const ListCardInfo = (information) => {
   const {

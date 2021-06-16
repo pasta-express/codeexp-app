@@ -7,11 +7,23 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Feather, Ionicons, FontAwesome } from "@expo/vector-icons";
-import { ProfileStackScreen } from './profileScreen/ProfileStackScreen';
+
+import { ProfileStackScreen } from "./profileScreen/ProfileStackScreen";
 import { WishlistStack } from "./WishlistPage/WishlistStack";
 import SearchScreen from "./SearchPage/SearchScreen";
 import SearchStack from './SearchPage/SearchStack';
-import InboxScreen from "./InboxPage/Inbox"
+import InboxScreen from "./InboxPage/Inbox";
+import Login from "./Login";
+import Signup from "./Signup";
+
+import firebase from "firebase";
+import { firebaseConfig } from "./config/firebaseConfig";
+//firebase.initializeApp(firebaseConfig);
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}else {
+  firebase.app(); // if already initialized, use that one
+}
 
 function ExploreStackScreen() {
   return (
@@ -27,6 +39,10 @@ function WishlistStackScreen() {
 
 function InboxStackScreen() {
   return <InboxScreen />
+}
+
+function loginScreen() {
+  return <Login />
 }
 
 export default function App() {
@@ -69,7 +85,7 @@ export default function App() {
         <Tab.Screen name="Explore" component={SearchStack} />
         <Tab.Screen name="Wishlist" component={WishlistStackScreen} />
         <Tab.Screen name="Inbox" component={InboxStackScreen} />
-        <Tab.Screen name="Profile" component={ProfileStackScreen} />
+        <Tab.Screen name="Profile" component={loginScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
