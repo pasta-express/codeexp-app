@@ -14,8 +14,6 @@ if (!firebase.apps.length) {
 const db = firebase.firestore().collection("sample-listings");
 const dbWishlists = firebase.firestore().collection("sample-wishlists");
 
-const SAMPLE_WISHLIST = [{ id: "0" }, { id: "2" }, { id: "4" }];
-
 export const SearchScreen = (props) => {
   const [searchInput, setSearchInput] = useState("");
   const [listings, setListings] = useState([]);
