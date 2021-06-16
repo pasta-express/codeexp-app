@@ -14,6 +14,11 @@ if (!firebase.apps.length) {
 const dbListings = firebase.firestore().collection("sample-listings");
 const dbSampleUsers = firebase.firestore().collection("sample-users");
 
+const currUser = firebase.auth().currentUser;
+console.log("current user is " + currUser)
+
+const dbRef = firebase.database().ref();
+
 export const WishlistScreen = ({ navigation }) => {
   const [listings, setListings] = useState([]);
   const [wishlists, setWishlists] = useState([]);
@@ -31,9 +36,13 @@ export const WishlistScreen = ({ navigation }) => {
     return () => {
       unsubscribe();
     };
+
+
+
   }, []);
 
   useEffect(() => {
+    /*
     const unsubscribe = dbSampleUsers.onSnapshot((collection) => {
       const updatedUsers = collection.docs.map((doc) => {
         return {
@@ -46,6 +55,16 @@ export const WishlistScreen = ({ navigation }) => {
     });
     return () => {
       unsubscribe();
+    };
+    */
+    const unsubscribe = dbRef.child("users").child(currUser.uid).child('wishlist').get().then((snapshot) => {
+      if (snapshot.exists()) {
+        console.log(snapshot.val());
+        setWishlists(snapshot.val());
+      }
+    })
+    return () => {
+      unsubscribe;
     };
   }, []);
 

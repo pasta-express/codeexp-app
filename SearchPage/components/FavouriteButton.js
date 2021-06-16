@@ -21,7 +21,7 @@ if (currUser) {
   });
 }
 
-export const FavouriteButton = ({ id, isFavourite = false }) => {
+export const FavouriteButton = ({ id, isFavourite }) => {
   const [favourite, setFavourite] = useState(isFavourite);
 
   const handlePress = () => {

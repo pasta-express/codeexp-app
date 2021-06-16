@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
       height: 40,
       margin: 12,
       flex: 1,
-      absolute:""
+      //absolute:""
   },
 
   List:{
