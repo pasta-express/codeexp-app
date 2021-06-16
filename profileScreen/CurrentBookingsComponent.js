@@ -16,6 +16,16 @@ const dbRef = firebase.database().ref();
 
 export const CurrentBookingsComponent = ({ bookings }) => {
 
+  console.log('samsungapple')
+  console.log(bookings)
+  while (bookings.length === 0) {
+    return (
+      <View>
+        <ActivityIndicator />
+      </View>
+    )
+  }
+
   var currentBookingIds = []
   if (currUser) {
     dbRef.child("users").child(currUser.uid).child('current_bookings').get().then((snapshot) => {
@@ -70,7 +80,7 @@ export const CurrentBookingsComponent = ({ bookings }) => {
   return (
     <View>
       <Text>Current Bookings</Text>
-      <FlatList data={currentBookingsDetails} renderItem={renderItem} />
+      <FlatList data={bookings} renderItem={renderItem} />
     </View>
   );
 };
