@@ -1,10 +1,11 @@
 import * as React from "react";
-import { Text, View, StyleSheet, SafeAreaView, FlatList, TouchableOpacity} from "react-native";
+import { Text, StyleSheet, SafeAreaView, FlatList, TouchableOpacity} from "react-native";
 import { List, Colors } from "react-native-paper";
 import { createStackNavigator } from "@react-navigation/stack";
 import ConversationScreen from "./Conversation";
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesome } from "@expo/vector-icons";
+import moment from "moment";
 
 const Stack = createStackNavigator();
 
@@ -48,7 +49,14 @@ function ContactItem (props) {
           name: "Conversation", params: {contact: props.name}})} 
           style={styles.ContactTouchable}>
           <Text style={{fontSize:28, fontWeight:"400"}}>{props.name}</Text>
-          <Text style={{fontSize:18, fontWeight:"200", color:"grey"}}>Hi! Do you have any queries?</Text>
+          <SafeAreaView style={{flexDirection: "row"}}>
+            <SafeAreaView style={{flex: 1}}>
+              <Text style={{fontSize:18, fontWeight:"200", color:"grey"}}>oooh okay, thanks!</Text>
+            </SafeAreaView>
+            <SafeAreaView style={{flex: 1, paddingRight:20}}>
+              <Text style={{fontSize:18, fontWeight:"200", color:"grey", alignSelf:"flex-end"}}>{moment().format('LT')}</Text>
+            </SafeAreaView>
+          </SafeAreaView>
         </TouchableOpacity>
       </SafeAreaView>
   )
@@ -81,8 +89,10 @@ const styles = StyleSheet.create({
 
   ContactTouchable: {
     flex:20,
-    height: 100,
+    marginTop:20,
+    marginBottom:20,
     justifyContent: "center",
+    alignContent: "stretch"
   },
 
   ContactIcon: {
