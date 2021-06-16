@@ -70,7 +70,6 @@ const CarouselCards = (coverImage) => {
 //================================================Content==============================================================================
 
 const DescriptionCard = ({ description }) => {
-  console.log(description)
   return (
     <Card style={styles.box}>
       <Text style={styles.descTitle}>Description</Text>
@@ -97,7 +96,6 @@ const FeatureCard = ({ features }, { id }) => {
 //=================================================Content===============================================================================
 
 const DetailScreen = ({route, navigation}) => {
-  console.log(route.params.description)
   useEffect(() => {
     navigation.setOptions({
       headerLeft: () => (

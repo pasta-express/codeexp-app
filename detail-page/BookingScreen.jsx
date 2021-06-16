@@ -49,6 +49,7 @@ const BookingScreen = ({ navigation }) => {
         <Button
           mode="contained"
           style={styles.cancelButton}
+          onPress={() => navigation.navigate("Details")}
         >
           Cancel
         </Button>
@@ -162,12 +163,12 @@ const styles = StyleSheet.create({
   cancelButton: {
     color: "white",
     backgroundColor: "black",
-    height: "45%",
+    height: "100%",
     borderRadius: 20,
     width: "35%"
   },
   confirmButtion: {
-    height: "45%",
+    height: "100%",
     backgroundColor: "black",
     color: "white",
     borderRadius: 20,
