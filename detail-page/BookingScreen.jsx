@@ -157,7 +157,25 @@ const BookingScreen = ({ route, navigation }) => {
                             onPress={() => navigation.navigate("Details")}>
             <Text style={styles.buttonText}>Cancel</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.confirmButton}>
+          <TouchableOpacity 
+            style={styles.confirmButton}
+            onPress={() => {
+              if (!range.startDate || !range.endDate) {
+                Alert.alert("You have not chosen your dates!")
+              } else {
+                Alert.alert("Confirm booking?", "Payment will be processed upon confirmation",[
+                  {
+                    text: 'Cancel',
+                    onPress: () => navigation.navigate("Booking")
+                  },
+                  {
+                    text: 'Confirm',
+                    onPress: () => navigation.navigate("Profile")
+                  }
+                ])
+              }  
+            }}
+            >
             <Text style={styles.buttonText}>Confirm</Text>
           </TouchableOpacity>
         </View>
