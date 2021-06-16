@@ -12,7 +12,16 @@ export const ListCard = (props) => {
   const { coverImage, navigation, route } = props;
 
   const handlePress = () => {
-    navigation.navigate("Details")
+    navigation.navigate("Details", {
+      companyName: props.companyName,
+      coverImage: props.coverImage,
+      isListingWishListed: false,
+      id: props.id,
+      location: props.location,
+      startDate: props.startDate,
+      endDate: props.endDate,
+      price: props.price
+    })
   };
 
   return (

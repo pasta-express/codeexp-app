@@ -39,28 +39,15 @@ const features = [
 ];
 
 //===============================Images=================================================
-const ImageCard = ({ item, index }) => {
+const ImageCard = ({ item }) => {
   return (
     <View>
-      <Image source={{ uri: item.imgUrl }} style={styles.image} />
+      <Image source={{ uri: item }} style={styles.image} />
     </View>
   );
 };
 
-const data = [
-  {
-    imgUrl: "https://picsum.photos/id/11/200/300",
-  },
-  {
-    imgUrl: "https://picsum.photos/id/10/200/300",
-  },
-  {
-    imgUrl: "https://picsum.photos/id/12/200/300",
-  },
-];
-
-const CarouselCards = () => {
-  const [index, setIndex] = React.useState(0);
+const CarouselCards = (coverImage) => {
   const isCarousel = React.useRef(null);
 
   return (
@@ -68,7 +55,7 @@ const CarouselCards = () => {
       <Carousel
         layoutCardOffset={9}
         ref={isCarousel}
-        data={data}
+        data={coverImage.images}
         renderItem={ImageCard}
         sliderWidth={NORMAL_WIDTH}
         itemWidth={ITEM_WIDTH}
@@ -109,7 +96,7 @@ const FeatureCard = () => {
 };
 //=================================================Content===============================================================================
 
-const DetailScreen = ({ navigation }) => {
+const DetailScreen = ({route, navigation}) => {
   useEffect(() => {
     navigation.setOptions({
       headerLeft: () => (
@@ -139,7 +126,7 @@ const DetailScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.carousel}>
-        <CarouselCards />
+        <CarouselCards images={route.params.coverImage} />
       </View>
       <View style={styles.scrollView}>
         <ScrollView showsVerticalScrollIndicator={false}>
