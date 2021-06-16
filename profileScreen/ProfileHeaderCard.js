@@ -1,18 +1,28 @@
 import React from "react";
 import { View, StyleSheet, Text, Image } from "react-native";
+import firebase from "firebase";
+import { firebaseConfig } from "../config/firebaseConfig";
+
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+} else {
+  firebase.app(); // if already initialized, use that one
+}
+
+const currUser = firebase.auth().currentUser;
 
 export const ProfileHeaderCard = (props) => {
   const { user } = props;
-  // console.log(user)
+  console.log(user)
   return (
     <View style={styles.container}>
       <Image
         style={styles.image}
         source={{
-          uri: user[0].profileImage,
+          uri: user.photoURL,
         }}
       />
-      <Text style={styles.text}>{user[0].name}</Text>
+      <Text style={styles.text}>{user.displayName}</Text>
     </View>
   );
 };

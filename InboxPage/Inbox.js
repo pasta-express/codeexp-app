@@ -44,7 +44,7 @@ function ContactItem (props) {
   const navigation = useNavigation();
   return (
       <SafeAreaView style={styles.ContactBox}>
-        <FontAwesome name="circle" color={props.color} size="30px" style={styles.ContactIcon}/>
+        <FontAwesome name="circle" color={props.color} size={30} style={styles.ContactIcon}/>
         <TouchableOpacity onPress= {()=>navigation.navigate({
           name: "Conversation", params: {contact: props.name}})} 
           style={styles.ContactTouchable}>

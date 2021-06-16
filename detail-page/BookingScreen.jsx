@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import { DatePickerModal } from "react-native-paper-dates";
 import moment from "moment";
+import firebase from "firebase";
 
 const BookingScreen = ({ route, navigation }) => {
   const [range, setRange] = useState({
@@ -49,6 +50,59 @@ const BookingScreen = ({ route, navigation }) => {
     },
     [setOpen, setRange]
   );
+
+
+  const currUser = firebase.auth().currentUser;
+
+  const dbRef = firebase.database().ref();
+  var currWishList = []
+  var currBookings = []
+  dbRef.child("users").child(currUser.uid).child('wishlist').get().then((snapshot) => {
+    if (snapshot.exists()) {
+      console.log(snapshot.val());
+      currWishList = snapshot.val();
+    }
+  })
+  dbRef.child("users").child(currUser.uid).child('current_bookings').get().then((snapshot) => {
+    if (snapshot.exists()) {
+      console.log(snapshot.val());
+      currBookings = snapshot.val();
+    }
+  })
+  /*
+  if (currUser) {
+    firebase.database()
+          .ref("users/" + currUser.uid)
+          .set({
+            gmail: currUser.email,
+            profile_picture: currUser.photoURL,
+            username: currUser.displayName,
+            uid: currUser.uid,
+            wishlist: currWishList,
+            current_bookings: currBookings
+
+          }).catch(function(e) {
+            console.log("upload data to firebase failed: " + e);
+    })
+  }
+*/
+  const linkBookings = (id) => {
+    currBookings.push(id);
+    if (currUser) {
+      firebase.database()
+            .ref("users/" + currUser.uid)
+            .set({
+              gmail: currUser.email,
+              profile_picture: currUser.photoURL,
+              username: currUser.displayName,
+              uid: currUser.uid,
+              wishlist: currWishList,
+              current_bookings: currBookings
+            }).catch(function(e) {
+              console.log("upload data to firebase failed: " + e);
+      })
+    }
+  }
 
   useEffect(() => {
     navigation.setOptions({ title: route.params.location });
@@ -116,7 +170,10 @@ const BookingScreen = ({ route, navigation }) => {
                   },
                   {
                     text: 'Confirm',
-                    onPress: () => navigation.navigate("Profile")
+                    onPress: () => { 
+                      linkBookings(route.params.id)
+                      navigation.navigate("Profile")
+                    }
                   }
                 ])
               }  

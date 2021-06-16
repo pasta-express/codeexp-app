@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList, ActivityIndicator } from "react-native";
 import { CurrentBookingCard } from "./CurrentBookingCard";
 import firebase from "firebase";
 import { firebaseConfig } from "../config/firebaseConfig";
@@ -10,10 +10,27 @@ if (!firebase.apps.length) {
   firebase.app(); // if already initialized, use that one
 }
 
+const currUser = firebase.auth().currentUser;
 const db = firebase.firestore().collection("sample-listings")
+const dbRef = firebase.database().ref();
 
 export const CurrentBookingsComponent = ({ bookings }) => {
-  const currentBookingIds = bookings[0].currentBookings
+
+  var currentBookingIds = []
+  if (currUser) {
+    dbRef.child("users").child(currUser.uid).child('current_bookings').get().then((snapshot) => {
+      if (snapshot.exists()) {
+        console.log(snapshot.val());
+        currentBookingIds = (snapshot.val());
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+  }
+  
+  //const currentBookingIds = bookings[0].currentBookings
   const [listings, setListings] = useState([])
 
   useEffect(() => {
