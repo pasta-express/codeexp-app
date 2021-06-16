@@ -77,6 +77,10 @@ const styles = StyleSheet.create({
       height: 40,
       margin: 12,
       flex: 1,
+<<<<<<< HEAD
+      //absolute:""
+=======
+>>>>>>> 08d4ea03896fad4098fb583a028dc5c971b41130
   },
 
   List:{

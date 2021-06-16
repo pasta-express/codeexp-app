@@ -4,6 +4,7 @@ import { View, Text, TextInput, StyleSheet, Image, TouchableOpacity } from "reac
 import firebase from "firebase";
 import * as Google from 'expo-google-app-auth';
 import { firebaseConfig } from "./config/firebaseConfig";
+import { ListCardInfo } from "./SearchPage/components/ListCardInfo";
 //firebase.initializeApp(firebaseConfig);
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
@@ -62,6 +63,7 @@ export default class Login extends Component {
 				firebase.auth().signInWithCredential(credential)
 					.then((result) => {
 						console.log("user signed in");
+
 						if (result.additionalUserInfo.isNewUser) {
 							console.log("new user")
 							firebase
