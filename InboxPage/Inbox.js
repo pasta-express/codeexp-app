@@ -60,7 +60,7 @@ function ContactItem (props) {
         <TouchableOpacity onPress= {()=>navigation.navigate({
           name: "Conversation", params: {contact: props.name}})} 
           style={styles.ContactTouchable}>
-          <Text style={{fontSize: "30%", fontWeight: "200"}}>{props.name}</Text>
+          <Text style={{fontSize: 30, fontWeight: "200"}}>{props.name}</Text>
         </TouchableOpacity>
       </SafeAreaView>
   )
