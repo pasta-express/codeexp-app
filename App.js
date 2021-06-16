@@ -6,7 +6,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Feather, Ionicons, FontAwesome } from "@expo/vector-icons";
-import { ProfileStackScreen } from './profileScreen/ProfileStackScreen';
+import { ProfileStack } from './profileScreen/ProfileStack';
 import SearchScreen from "./SearchPage/SearchScreen";
 import SearchStack from './SearchPage/SearchStack';
 import { WishlistScreen } from "./WishlistPage/WishlistScreen";
@@ -71,7 +71,7 @@ export default function App() {
         <Tab.Screen name="Explore" component={SearchStack} />
         <Tab.Screen name="Wishlist" component={WishlistStackScreen} />
         <Tab.Screen name="Inbox" component={InboxStackScreen} />
-        <Tab.Screen name="Profile" component={ProfileStackScreen} />
+        <Tab.Screen name="Profile" component={ProfileStack} />
       </Tab.Navigator>
     </NavigationContainer>
   );
