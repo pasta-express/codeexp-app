@@ -1,14 +1,26 @@
 import React, { useState } from "react";
 import { TouchableOpacity } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
+import firebase from "firebase";
 
-export const FavouriteButton = ({ isFavourite = false }) => {
+export const FavouriteButton = ({ id, isFavourite = false }) => {
   const [favourite, setFavourite] = useState(isFavourite);
 
   const handlePress = () => {
     setFavourite((favourite) => !favourite);
-    
-    // TODO: update user's favourite array
+
+    if (!favourite) {
+      firebase.firestore().collection("sample-wishlists").add({ id: id });
+    } else {
+      firebase
+        .firestore()
+        .collection("sample-wishlists")
+        .where("id", "==", id)
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => doc.ref.delete());
+        });
+    }
   };
 
   return (
