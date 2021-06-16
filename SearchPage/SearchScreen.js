@@ -13,7 +13,6 @@ if (!firebase.apps.length) {
 
 const db = firebase.firestore().collection("sample-listings");
 const dbSampleUsers = firebase.firestore().collection("sample-users");
-const dbWishlists = firebase.firestore().collection("sample-wishlists");
 
 export const SearchScreen = (props) => {
   const [searchInput, setSearchInput] = useState("");
@@ -21,14 +20,14 @@ export const SearchScreen = (props) => {
   const [wishlists, setWishlists] = useState([]);
 
   useEffect(() => {
-    const unsubscribe = dbWishlists.onSnapshot((collection) => {
-      const updatedWishlist = collection.docs.map((doc) => {
+    const unsubscribe = dbSampleUsers.onSnapshot((collection) => {
+      const updatedUsers = collection.docs.map((doc) => {
         return {
           id: doc.id,
           ...doc.data(),
         };
       });
-      setWishlists(updatedWishlist);
+      setWishlists(updatedUsers[0].favourites);
     });
     return () => {
       unsubscribe();
@@ -65,10 +64,8 @@ export const SearchScreen = (props) => {
   function renderItem({ item }) {
     const { id } = item;
     // Checks if user has wishlisted listing
-      const isListingWishlisted = wishlists.some(
-        (wishlist) => wishlist.id === id
-      );
-      
+    const isListingWishlisted = wishlists.some((wishlist) => wishlist === id);
+
     return (
       <ListCard
         key={id}
