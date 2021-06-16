@@ -62,7 +62,7 @@ export const SearchScreen = (props) => {
     <SafeAreaView style={styles.container}>
       <Searchbar
         style={styles.searchInput}
-        placeholder="Where do you want to work at?"
+        placeholder="Start searching"
         value={searchInput}
         onChangeText={onChangeText}
       />
@@ -74,12 +74,13 @@ export const SearchScreen = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#9FA3CC",
+    backgroundColor: "black",
     width: "100%",
   },
   searchInput: {
-    borderRadius: 20,
+    borderRadius: 25,
     margin: 15,
+    paddingLeft: 10
   },
 });
 
