@@ -86,7 +86,7 @@ export const WishlistScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#9FA3CC",
+    backgroundColor: "black",
     width: "100%",
   },
   searchInput: {

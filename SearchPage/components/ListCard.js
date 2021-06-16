@@ -44,16 +44,17 @@ export const ListCard = (props) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
-    borderRadius: 20,
-    margin: 12,
+    margin: 0,
     minHeight: 180,
     padding: 10,
     flexDirection: "row",
     justifyContent: "space-evenly",
+    borderBottomColor: "#e0e0e0",
+    borderBottomWidth: 1.5
   },
   image: {
     height: 150,
-    width: 130,
+    width: "30%",
     resizeMode: "cover",
     alignSelf: "center",
   },
