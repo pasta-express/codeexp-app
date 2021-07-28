@@ -3,6 +3,7 @@ import { View, StyleSheet, Text, Image } from "react-native";
 
 export const CurrentBookingCard = (props) => {
   const { bookingDetails } = props;
+  // console.log(bookingDetails);
   return (
     <View style={styles.container}>
       <Image

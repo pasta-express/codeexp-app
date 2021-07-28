@@ -13,7 +13,6 @@ if (!firebase.apps.length) {
   firebase.app(); // if already initialized, use that one
 }
 
-const currUser = firebase.auth().currentUser;
 const dbRef = firebase.database().ref();
 
 const ProfileScreen = (props) => {
@@ -22,45 +21,69 @@ const ProfileScreen = (props) => {
   const [bookings, setBookings] = useState([])
   const [bookedidentities, setIdentities] = useState([])
 
+  const [initializing, setInitializing] = useState(true);
+  const [user, setUser] = useState(null);
+
+  // Handle user state changes
+  function onAuthStateChanged(user) {
+    setUser(user);
+    if (initializing) setInitializing(false);
+  }
   useEffect(() => {
-    console.log('lantern')
-    if (currUser) {
-      dbRef.child("users").child(currUser.uid).child('current_bookings').get().then((snapshot) => {
-        if (snapshot.exists()) {
-          console.log(snapshot.val());
-          setIdentities(snapshot.val())
-          // bookedIds.push(snapshot.val());
-        } else {
-          console.log("No data available");
-        }
-      }).catch((error) => {
-        console.error(error);
-      });
-    }
-  }, [])
+    const subscriber = firebase.auth().onAuthStateChanged(onAuthStateChanged);
+    return subscriber; // unsubscribe on unmount
+  }, []);
 
   useEffect(() => {
+    if (!user) {
+      return undefined
+    }
+    dbRef.child("users").child(user.uid).child("current_bookings").get().then((snapshot) => {
+      if (snapshot.exists()) {
+        console.log(snapshot.val());
+        setIdentities(snapshot.val())
+      } else {
+        console.log("no data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });  
+  }, [user])
+
+  useEffect(() => {
+    setBookings([])
+    let prev = Array.from(bookings)
+    if (!user || !bookedidentities) {
+      return undefined
+    }
+    // console.log(bookedidentities.length)
     for (var i = 0; i < bookedidentities.length; i++) {
+      console.log(prev)
       var docRef = db.collection("sample-listings").doc(bookedidentities[i]);
       docRef.get().then((doc) => {
-          if (doc.exists) {
-              setBookings([
-                ...doc.data()
-              ])
-          } else {
-              // doc.data() will be undefined in this case
-              console.log("No such document!");
-          }
+        if (doc.exists) {
+          // console.log(doc.data())
+          prev.push(doc.data())
+          setBookings(prev)
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+        }
       }).catch((error) => {
           console.log("Error getting document:", error);
       });
-    }
-    console.log("TEST");
-  }, [])
+    }      
+  }, [bookedidentities])
+
+  if (initializing) return null;
+
+  if (!user) {
+    return null;
+  };  
 
   return (
     <SafeAreaView style={styles.container}>
-      <ProfileHeaderCard user={currUser} />
+      <ProfileHeaderCard user={user} />
       <ShadowEffectCard>
         <CurrentBookingsComponent bookings={bookings} />
       </ShadowEffectCard>
