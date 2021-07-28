@@ -9,7 +9,6 @@ const formatDate = (date) => {
 };
 
 const currUser = firebase.auth().currentUser;
-console.log("current user is " + currUser);
 
 const dbRef = firebase.database().ref();
 

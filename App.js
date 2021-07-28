@@ -1,5 +1,5 @@
 import "react-native-gesture-handler";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -8,18 +8,37 @@ import { ProfileStack } from "./profileScreen/ProfileStack";
 import { WishlistStack } from "./WishlistPage/WishlistStack";
 import SearchStack from "./SearchPage/SearchStack";
 import InboxScreen from "./InboxPage/Inbox";
-import LoginStack from "./LoginStack";
-
+import LoginScreen from "./Login"
 import firebase from "firebase";
 import { firebaseConfig } from "./config/firebaseConfig";
-//firebase.initializeApp(firebaseConfig);
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 } else {
   firebase.app(); // if already initialized, use that one
 }
 
+
 export default function App() {
+  const [initializing, setInitializing] = useState(true);
+  const [user, setUser] = useState(null);
+
+  // Handle user state changes
+  function onAuthStateChanged(user) {
+    setUser(user);
+    if (initializing) setInitializing(false);
+  }
+  useEffect(() => {
+    const subscriber = firebase.auth().onAuthStateChanged(onAuthStateChanged);
+    return subscriber; // unsubscribe on unmount
+  }, []);
+
+  if (initializing) return null;
+
+  if (!user) {
+    return (
+      <LoginScreen />
+    )
+  };  
   const Tab = createBottomTabNavigator();
 
   return (
@@ -58,7 +77,6 @@ export default function App() {
         <Tab.Screen name="Explore" component={SearchStack} />
         <Tab.Screen name="Wishlist" component={WishlistStack} />
         <Tab.Screen name="Inbox" component={InboxScreen} />
-        <Tab.Screen name="Profile" component={LoginStack} />
         <Tab.Screen name="ProfileScreen" component={ProfileStack} />
       </Tab.Navigator>
     </NavigationContainer>
