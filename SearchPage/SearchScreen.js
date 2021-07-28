@@ -65,10 +65,11 @@ export const SearchScreen = (props) => {
   function renderItem({ item }) {
     const { id } = item;
     // Checks if user has wishlisted listing
-      const isListingWishlisted = wishlists.some(
-        (wishlist) => wishlist.id === id
-      );
-      
+    const isListingWishlisted = wishlists.some(
+      (wishlist) => wishlist.id === id
+    );
+    console.log("search screen")
+    console.log(isListingWishlisted)      
     return (
       <ListCard
         key={id}

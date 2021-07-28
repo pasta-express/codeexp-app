@@ -10,7 +10,9 @@ const formatDate = (date) => {
 };
 */
 export const ListCard = (props) => {
-  const { coverImage, navigation, route } = props;
+  const { coverImage, navigation, route, isListingWishListed } = props;
+  console.log("List card")
+  console.log(isListingWishListed);
 
   const handlePress = () => {
     navigation.navigate("Details", {

@@ -43,6 +43,9 @@ export const ListCardInfo = (information) => {
     isListingWishlisted,
   } = information;
 
+
+  console.log("List card info")
+  console.log(isListingWishlisted)
   return (
     <View style={styles.container}>
       <Text style={{ fontWeight: "bold", fontSize: 18 }}>{companyName}</Text>

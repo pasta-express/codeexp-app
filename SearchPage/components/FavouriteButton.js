@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { TouchableOpacity } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import firebase from "firebase";
+import { useEffect } from "react/cjs/react.development";
 
 const currUser = firebase.auth().currentUser;
 
@@ -28,12 +29,9 @@ const dbRef = firebase.database().ref();
 // }
 
 export const FavouriteButton = ({ id, isFavourite }) => {
-  const [favourite, setFavourite] = useState(isFavourite);
-
+  
   const handlePress = () => {
-    setFavourite((favourite) => !favourite);
-
-    if (!favourite) {
+    if (!isFavourite) {
       firebase.firestore().collection("sample-wishlists").add({ id: id });
     } else {
       firebase
@@ -103,7 +101,7 @@ export const FavouriteButton = ({ id, isFavourite }) => {
       <FontAwesome
         name="heart-o"
         size={24}
-        color={favourite ? "red" : "black"}
+        color={isFavourite ? "red" : "black"}
       />
     </TouchableOpacity>
   );
