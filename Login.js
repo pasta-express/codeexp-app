@@ -14,7 +14,7 @@ if (!firebase.apps.length) {
 var database = firebase.database();
 
 const DismissKeyboardHOC = (Comp) => {
-  	return ({ children, ...props }) => (
+  return ({ children, ...props }) => (
 		<TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
 			<Comp {...props}>{children}</Comp>
 		</TouchableWithoutFeedback>
