@@ -91,19 +91,6 @@ const DetailScreen = ({route, navigation}) => {
           <AntDesign name="back" size={24} color="black" />
         </TouchableOpacity>
       ),
-      headerRight: () => (
-        <TouchableOpacity
-          style={styles.favouriteButton}
-          onPress={() => console.log("toggle favourites")}
-        >
-          <FontAwesome
-            name="heart-o"
-            size={24}
-            // TODO: Sync with backend
-            color={false ? "red" : "black"}
-          />
-        </TouchableOpacity>
-      ),
     });
   });
 
