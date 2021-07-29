@@ -3,7 +3,7 @@ import { TouchableWithoutFeedback, Keyboard } from "react-native";
 import { View, Text, TextInput, StyleSheet, Image, TouchableOpacity } from "react-native";
 import firebase from "firebase";
 import * as Google from 'expo-google-app-auth';
-import { firebaseConfig } from "../config/firebaseConfig";
+import { firebaseConfig } from "../../config/firebaseConfig";
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 } else {
@@ -136,7 +136,7 @@ export default class Login extends Component {
               <View style={styles.googleBlock}>
                   <Image 
                     style={styles.img}
-                    source={require("../assets/google.png")}></Image>
+                    source={require("../../assets/google.png")}></Image>
                   <TouchableOpacity
                     onPress={() => {
                         console.log("pressed")
