@@ -30,7 +30,7 @@ export const CurrentBookingsComponent = ({ bookings }) => {
   return (
     <View>
       <Text>Current Bookings</Text>
-      <FlatList data={bookings} renderItem={renderItem} />
+      <FlatList data={bookings} renderItem={renderItem} keyExtractor={(item, index) => index.toString()} />
     </View>
   );
 };
