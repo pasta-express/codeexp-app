@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { SafeAreaView, StyleSheet, FlatList } from "react-native";
 import { ListCard } from "../SearchPage/components/ListCard";
 import firebase from "firebase";
-
+import { EmptyPage } from "./EmptyPage";
 import { firebaseConfig } from "../config/firebaseConfig";
 
 if (!firebase.apps.length) {
@@ -115,24 +115,29 @@ export const WishlistScreen = ({ navigation }) => {
   //   );
   // }
 
-  return (
-    <SafeAreaView style={styles.container}>
-      <FlatList
-        data={renderData()}
-        renderItem={({ item }) => {
-          const { id } = item;
-          return (
-            <ListCard
-              key={id}
-              navigation={navigation}
-              isListingWishlisted={true}
-              {...item}
-            />
-          );
-        }}
-      />
-    </SafeAreaView>
-  );
+  if (wishlists.length === 0) {    
+    return (<EmptyPage />)
+  }
+  else {
+    return (
+      <SafeAreaView style={styles.container}>
+        <FlatList
+          data={renderData()}
+          renderItem={({ item }) => {
+            const { id } = item;
+            return (
+              <ListCard
+                key={id}
+                navigation={navigation}
+                isListingWishlisted={true}
+                {...item}
+              />
+            );
+          }}
+        />
+      </SafeAreaView>
+    );  
+  }
 };
 
 const styles = StyleSheet.create({

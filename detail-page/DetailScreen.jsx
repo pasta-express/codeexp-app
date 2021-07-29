@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   StyleSheet,
   Text,
   View,
   TouchableOpacity,
-  FlatList,
-  Button,
   Image,
   Dimensions,
   ScrollView,
@@ -14,8 +12,6 @@ import {
 import { AntDesign } from "@expo/vector-icons";
 
 import Carousel from "react-native-snap-carousel";
-
-import { createStackNavigator } from "@react-navigation/stack";
 
 import { Card, FAB } from "react-native-paper";
 
@@ -26,17 +22,6 @@ const SLIDER_WIDTH = Dimensions.get("window").width + 200;
 const NORMAL_WIDTH = Dimensions.get("window").width;
 
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
-
-const features = [
-  "Accommodates 4-6 pax",
-  "WiFi",
-  "Aircon",
-  "Free Parking",
-  "Coffeebar",
-  "Comfortable furniture",
-  "Projector",
-  "Omnidesk",
-];
 
 //===============================Images=================================================
 const ImageCard = ({ item }) => {
@@ -85,7 +70,7 @@ const FeatureCard = ({ features }, { id }) => {
     <Card style={styles.box}>
       <Text style={styles.descTitle}>Features</Text>
       {features.map((f) => (
-        <Text key={id} style={styles.descMain}>
+        <Text key={f} style={styles.descMain}>
           {`\u2714`}
           {f}
         </Text>

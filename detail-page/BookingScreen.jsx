@@ -4,10 +4,6 @@ import {
   Text,
   View,
   TouchableOpacity,
-  FlatList,
-  Image,
-  Dimensions,
-  ScrollView,
   Alert
 } from "react-native";
 import { DatePickerModal } from "react-native-paper-dates";
@@ -69,23 +65,7 @@ const BookingScreen = ({ route, navigation }) => {
       currBookings = snapshot.val();
     }
   })
-  /*
-  if (currUser) {
-    firebase.database()
-          .ref("users/" + currUser.uid)
-          .set({
-            gmail: currUser.email,
-            profile_picture: currUser.photoURL,
-            username: currUser.displayName,
-            uid: currUser.uid,
-            wishlist: currWishList,
-            current_bookings: currBookings
-
-          }).catch(function(e) {
-            console.log("upload data to firebase failed: " + e);
-    })
-  }
-*/
+  
   const linkBookings = (id) => {
     currBookings.push(id);
     if (currUser) {
