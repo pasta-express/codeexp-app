@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, FlatList, ActivityIndicator } from "react-native";
 import { CurrentBookingCard } from "./CurrentBookingCard";
 import firebase from "firebase";
-import { firebaseConfig } from "../config/firebaseConfig";
+import { firebaseConfig } from "../../config/firebaseConfig";
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }else {

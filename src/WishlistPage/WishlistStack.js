@@ -1,7 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { WishlistScreen } from "./WishlistScreen";
-import DetailScreen from "../src/DetailPage/DetailScreen";
+import DetailScreen from "../DetailPage/DetailScreen";
 
 const Stack = createStackNavigator();
 

@@ -4,9 +4,9 @@ import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Feather, Ionicons, FontAwesome } from "@expo/vector-icons";
-import { ProfileStack } from "./ProfilePage/ProfileStack";
-import { WishlistStack } from "./WishlistPage/WishlistStack";
-import SearchStack from "./SearchPage/SearchStack";
+import { ProfileStack } from "./src/ProfilePage/ProfileStack";
+import { WishlistStack } from "./src/WishlistPage/WishlistStack";
+import SearchStack from "./src/SearchPage/SearchStack";
 import InboxScreen from "./src/InboxPage/Inbox";
 import LoginScreen from "./src/LoginPage/Login"
 import firebase from "firebase";

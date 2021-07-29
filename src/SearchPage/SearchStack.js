@@ -1,10 +1,10 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import SearchScreen from "./SearchScreen";
-import DetailScreen from "../src/DetailPage/DetailScreen.jsx";
-import BookingScreen from "../src/DetailPage/BookingScreen.jsx";
+import DetailScreen from "../DetailPage/DetailScreen.jsx";
+import BookingScreen from "../DetailPage/BookingScreen.jsx";
 import ProfileScreen from "../ProfilePage/ProfileScreen"
-import MessageScreen from "../src/InboxPage/Conversation"
+import MessageScreen from "../InboxPage/Conversation"
 
 const InnerStack = createStackNavigator();
 

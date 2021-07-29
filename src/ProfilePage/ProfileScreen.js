@@ -5,7 +5,7 @@ import { ProfileHeaderCard } from "./ProfileHeaderCard";
 import { CurrentBookingsComponent } from "./CurrentBookingsComponent";
 import { ShadowEffectCard } from "./ShadowEffectCard";
 import firebase from "firebase";
-import { firebaseConfig } from "../config/firebaseConfig";
+import { firebaseConfig } from "../../config/firebaseConfig";
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);

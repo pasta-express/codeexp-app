@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet, Text, Image } from "react-native";
 import firebase from "firebase";
-import { firebaseConfig } from "../config/firebaseConfig";
+import { firebaseConfig } from "../../config/firebaseConfig";
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);

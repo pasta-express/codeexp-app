@@ -3,7 +3,7 @@ import { SafeAreaView, StyleSheet, FlatList } from "react-native";
 import { ListCard } from "../SearchPage/components/ListCard";
 import firebase from "firebase";
 import { EmptyPage } from "./EmptyPage";
-import { firebaseConfig } from "../config/firebaseConfig";
+import { firebaseConfig } from "../../config/firebaseConfig";
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
