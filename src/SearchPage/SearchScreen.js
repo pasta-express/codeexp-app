@@ -49,7 +49,7 @@ export const SearchScreen = (props) => {
   }, []);
 
   const onChangeText = (searchInput) => {
-    setSearchInput(searchInput.toLowerCase());
+    setSearchInput(searchInput);
   };
 
   function renderItem({ item }) {
@@ -72,8 +72,8 @@ export const SearchScreen = (props) => {
     listings :
     listings.filter(
       (listing) =>
-        listing.companyName.toLowerCase().includes(searchInput) ||
-        listing.location.toLowerCase().includes(searchInput)
+        listing.companyName.toLowerCase().includes(searchInput.toLowerCase()) ||
+        listing.location.toLowerCase().includes(searchInput.toLowerCase())
     )
 
   return (
