@@ -49,15 +49,7 @@ export const SearchScreen = (props) => {
   }, []);
 
   const onChangeText = (searchInput) => {
-    setSearchInput(searchInput);
-    const query = searchInput.toLowerCase();
-    setListings(
-      SAMPLE_LISTINGS.filter(
-        (listing) =>
-          listing.companyName.toLowerCase().includes(query) ||
-          listing.location.toLowerCase().includes(query)
-      )
-    );
+    setSearchInput(searchInput.toLowerCase());
   };
 
   function renderItem({ item }) {
@@ -76,6 +68,14 @@ export const SearchScreen = (props) => {
     );
   }
 
+  const listingsToShow = searchInput.length === 0 ?
+    listings :
+    listings.filter(
+      (listing) =>
+        listing.companyName.toLowerCase().includes(searchInput) ||
+        listing.location.toLowerCase().includes(searchInput)
+    )
+
   return (
     <SafeAreaView style={styles.container}>
       <Searchbar
@@ -84,7 +84,7 @@ export const SearchScreen = (props) => {
         value={searchInput}
         onChangeText={onChangeText}
       />
-      <FlatList data={listings} renderItem={renderItem} />
+      <FlatList data={listingsToShow} renderItem={renderItem} />
     </SafeAreaView>
   );
 };
