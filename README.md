@@ -15,7 +15,58 @@
 
 This is a project done as part of the [Brainhack 2021 CODE_EXP Competition](http://codeexp.tk.sg)
 
-#### Team Members
+A video demo can be found [here](https://youtu.be/GbrkUGBdrq4)
+
+## Some screenshots
+
+Login page
+<br>
+<br>
+<br>
+<img src="./screenshots/login.png" alt="drawing" width="400"/>
+<br>
+<br>
+<br>
+Home page of the app
+<br>
+<br>
+<br>
+<img src="./screenshots/home.png" alt="drawing" width="400"/>
+<br>
+<br>
+<br>
+Individual listings
+<br>
+<br>
+<br>
+<img src="./screenshots/details.png" alt="drawing" width="400"/>
+<br>
+<br>
+<br>
+My profile
+<br>
+<br>
+<br>
+<img src="./screenshots/profile.png" alt="drawing" width="400"/>
+<br>
+<br>
+<br>
+Inbox page
+<br>
+<br>
+<br>
+<img src="./screenshots/inbox.png" alt="drawing" width="400"/>
+<br>
+<br>
+<br>
+Booking page
+<br>
+<br>
+<br>
+<img src="./screenshots/booking.png" alt="drawing" width="400"/>
+
+
+## Team Members
 
 > - [Keith](https://github.com/fairyinabottle4/)
 > - [Danelynn](https://github.com/Icelenaugust/)
