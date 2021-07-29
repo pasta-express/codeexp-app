@@ -8,7 +8,7 @@ import { ProfileStack } from "./profileScreen/ProfileStack";
 import { WishlistStack } from "./WishlistPage/WishlistStack";
 import SearchStack from "./SearchPage/SearchStack";
 import InboxScreen from "./InboxPage/Inbox";
-import LoginScreen from "./Login"
+import LoginScreen from "./LoginPage/Login"
 import firebase from "firebase";
 import { firebaseConfig } from "./config/firebaseConfig";
 if (!firebase.apps.length) {

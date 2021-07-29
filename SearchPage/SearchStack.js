@@ -1,8 +1,8 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import SearchScreen from "./SearchScreen";
-import DetailScreen from "../detail-page/DetailScreen";
-import BookingScreen from "../detail-page/BookingScreen";
+import DetailScreen from "../DetailPage/DetailScreen.jsx";
+import BookingScreen from "../DetailPage/BookingScreen.jsx";
 import ProfileScreen from "../profileScreen/ProfileScreen"
 import MessageScreen from "../InboxPage/Conversation"
 
