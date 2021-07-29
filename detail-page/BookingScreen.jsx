@@ -55,13 +55,11 @@ const BookingScreen = ({ route, navigation }) => {
   var currBookings = []
   dbRef.child("users").child(currUser.uid).child('wishlist').get().then((snapshot) => {
     if (snapshot.exists()) {
-      console.log(snapshot.val());
       currWishList = snapshot.val();
     }
   })
   dbRef.child("users").child(currUser.uid).child('current_bookings').get().then((snapshot) => {
     if (snapshot.exists()) {
-      console.log(snapshot.val());
       currBookings = snapshot.val();
     }
   })

@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     color: "white"
   },
 });
-console.log("hello")
+
 export const EmptyPage = () => {
   return (
     <View style={styles.container}>

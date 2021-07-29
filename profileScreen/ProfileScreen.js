@@ -40,7 +40,6 @@ const ProfileScreen = (props) => {
     }
     dbRef.child("users").child(user.uid).child("current_bookings").get().then((snapshot) => {
       if (snapshot.exists()) {
-        console.log(snapshot.val());
         setIdentities(snapshot.val())
       } else {
         console.log("no data available");
@@ -56,13 +55,10 @@ const ProfileScreen = (props) => {
     if (!user || !bookedidentities) {
       return undefined
     }
-    // console.log(bookedidentities.length)
     for (var i = 0; i < bookedidentities.length; i++) {
-      console.log(prev)
       var docRef = db.collection("sample-listings").doc(bookedidentities[i]);
       docRef.get().then((doc) => {
         if (doc.exists) {
-          // console.log(doc.data())
           prev.push(doc.data())
           setBookings(prev)
         } else {
