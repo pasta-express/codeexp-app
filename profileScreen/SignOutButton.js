@@ -3,7 +3,6 @@ import { TouchableOpacity, Text } from "react-native"
 import firebase from "firebase";
 
 export const SignOutButton = () => {
-  // const { signOutHandler } = props;
 
   const signOutHandler = () => {
     firebase.auth().signOut().then(() => console.log("user signed out"))

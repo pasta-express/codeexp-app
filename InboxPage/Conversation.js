@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Text, StyleSheet, FlatList, SafeAreaView, TouchableOpacity} from "react-native";
+import { Text, StyleSheet, FlatList, SafeAreaView} from "react-native";
 
 import { TextInput, Colors} from "react-native-paper";
 

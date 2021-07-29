@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { View, Text, FlatList, ActivityIndicator } from "react-native";
 import { CurrentBookingCard } from "./CurrentBookingCard";
 import firebase from "firebase";
 import { firebaseConfig } from "../config/firebaseConfig";
-//firebase.initializeApp(firebaseConfig);
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }else {

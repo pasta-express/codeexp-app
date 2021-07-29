@@ -4,14 +4,11 @@ import { View, Text, TextInput, StyleSheet, Image, TouchableOpacity } from "reac
 import firebase from "firebase";
 import * as Google from 'expo-google-app-auth';
 import { firebaseConfig } from "./config/firebaseConfig";
-import { ListCardInfo } from "./SearchPage/components/ListCardInfo";
-//firebase.initializeApp(firebaseConfig);
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 } else {
   firebase.app(); // if already initialized, use that one
 }
-var database = firebase.database();
 
 const DismissKeyboardHOC = (Comp) => {
   return ({ children, ...props }) => (

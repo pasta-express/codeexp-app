@@ -9,8 +9,6 @@ if (!firebase.apps.length) {
   firebase.app(); // if already initialized, use that one
 }
 
-const currUser = firebase.auth().currentUser;
-
 export const ProfileHeaderCard = (props) => {
   const { user } = props;
   return (

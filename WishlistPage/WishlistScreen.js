@@ -11,14 +11,6 @@ if (!firebase.apps.length) {
   firebase.app(); // if already initialized, use that one
 }
 
-// const dbListings = firebase.firestore().collection("sample-listings");
-// const dbSampleUsers = firebase.firestore().collection("sample-users");
-
-// const currUser = firebase.auth().currentUser;
-// console.log("current user is " + currUser);
-
-// const dbRef = firebase.database().ref();
-
 const dbListings = firebase.firestore().collection("sample-listings");
 const dbWishlists = firebase.firestore().collection("sample-wishlists");
 
@@ -61,59 +53,6 @@ export const WishlistScreen = ({ navigation }) => {
       wishlists.some((wishlist) => wishlist.id === listing.id)
     );
   }
-
-  // useEffect(() => {
-  //   const unsubscribe = dbListings.onSnapshot((collection) => {
-  //     const updatedListings = collection.docs.map((doc) => {
-  //       return {
-  //         id: doc.id,
-  //         ...doc.data(),
-  //       };
-  //     });
-  //     setListings(updatedListings);
-  //   });
-  //   return () => {
-  //     unsubscribe();
-  //   };
-  // });
-
-  // useEffect(() => {
-
-  //   const unsubscribe = dbSampleUsers.onSnapshot((collection) => {
-  //     const updatedUsers = collection.docs.map((doc) => {
-  //       return {
-  //         id: doc.id,
-  //         ...doc.data(),
-  //       };
-  //     });
-
-  //     setWishlists(updatedUsers[0].favourites);
-  //   });
-  //   return () => {
-  //     unsubscribe();
-  //   };
-
-  //   // const unsubscribe = dbRef
-  //   //   .child("users")
-  //   //   .child(currUser.uid)
-  //   //   .child("wishlist")
-  //   //   .get()
-  //   //   .then((snapshot) => {
-  //   //     if (snapshot.exists()) {
-  //   //       console.log(snapshot.val());
-  //   //       setWishlists(snapshot.val());
-  //   //     }
-  //   //   });
-  //   // return () => {
-  //   //   unsubscribe;
-  //   // };
-  // });
-
-  // function renderData() {
-  //   return listings.filter((listing) =>
-  //     wishlists.some((wishlist) => wishlist === listing.id)
-  //   );
-  // }
 
   if (wishlists.length === 0) {    
     return (<EmptyPage />)

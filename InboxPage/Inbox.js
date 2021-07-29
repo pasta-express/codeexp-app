@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Text, StyleSheet, SafeAreaView, FlatList, TouchableOpacity} from "react-native";
-import { List, Colors } from "react-native-paper";
+import { Colors } from "react-native-paper";
 import { createStackNavigator } from "@react-navigation/stack";
 import ConversationScreen from "./Conversation";
 import { useNavigation } from "@react-navigation/native";
@@ -14,20 +14,10 @@ const contacts = [
   {id: "1", name: "Fairy", color: Colors.green500},
   {id: "2", name: "Larry", color: Colors.purple500},
   {id: "3", name: "Harry", color: Colors.orange500},
-  {id: "4", name: "Merlin", color: Colors.red500},
-  // {id: "5", name: "Merlin", color: Colors.red500},
-  // {id: "6", name: "Merlin", color: Colors.red500},
-  // {id: "7", name: "Merlin", color: Colors.red500},
-  // {id: "8", name: "Merlin", color: Colors.red500},
-  // {id: "9", name: "Merlin", color: Colors.red500},
-  // {id: "10", name: "Merlin", color: Colors.red500},
-  // {id: "11", name: "Merlin", color: Colors.red500},
-  // {id: "12", name: "Merlin", color: Colors.red500},
-  // {id: "13", name: "Merlin", color: Colors.red500},
-  
+  {id: "4", name: "Merlin", color: Colors.red500},  
 ]
 
-function InboxScreen({ navigation }) {
+function InboxScreen() {
   return (
     <SafeAreaView style={styles.Container}>
         <FlatList style={styles.list} data={contacts} renderItem={renderContact} nestedScrollEnabled/>

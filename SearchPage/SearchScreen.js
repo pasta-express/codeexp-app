@@ -4,7 +4,6 @@ import { Searchbar } from "react-native-paper";
 import { ListCard } from "./components/ListCard";
 import firebase from "firebase";
 import { firebaseConfig } from "../config/firebaseConfig";
-//firebase.initializeApp(firebaseConfig);
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 } else {
@@ -12,7 +11,6 @@ if (!firebase.apps.length) {
 }
 
 const db = firebase.firestore().collection("sample-listings");
-const dbSampleUsers = firebase.firestore().collection("sample-users");
 const dbWishlists = firebase.firestore().collection("sample-wishlists");
 
 export const SearchScreen = (props) => {
@@ -68,8 +66,6 @@ export const SearchScreen = (props) => {
     const isListingWishlisted = wishlists.some(
       (wishlist) => wishlist.id === id
     );
-    console.log("search screen")
-    console.log(isListingWishlisted)      
     return (
       <ListCard
         key={id}
